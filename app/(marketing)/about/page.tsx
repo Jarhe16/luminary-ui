@@ -41,8 +41,8 @@ export default function AboutPage() {
             {[
               { label: 'Founded', value: '2024' },
               { label: 'Headquarters', value: 'Atlanta, GA' },
-              { label: 'Legal Entity', value: 'Apex Vital Holdings LLC' },
-              { label: 'Brand', value: 'Luminary Financial (DBA)' },
+              { label: 'Legal Entity', value: 'Luminary Financial LLC' },
+              { label: 'Parent Company', value: 'Apex Vital Holdings LLC' },
               { label: 'Industry', value: 'NAICS 522310 — Loan Brokers\nNAICS 523930 — Investment Advice' },
               { label: 'Contact', value: 'hello@luminaryfinancial.co' },
             ].map(item => (

@@ -73,8 +73,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
                 AI-powered compliance auditing for Registered Investment Advisers and financial institutions. Built on the ICM methodology.
               </p>
               <div style={{ marginTop: '1rem', fontSize: '0.8rem', color: 'var(--muted)' }}>
-                A <span style={{ color: 'var(--foreground)' }}>Luminary Financial</span> product<br />
-                DBA under Apex Vital Holdings LLC
+                A subsidiary of <span style={{ color: 'var(--foreground)' }}>Apex Vital Holdings LLC</span>
               </div>
             </div>
 
@@ -111,7 +110,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
 
           <div style={{ borderTop: '1px solid var(--border)', paddingTop: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>
-              © {new Date().getFullYear()} Apex Vital Holdings LLC. All rights reserved. Luminary Financial is a DBA.
+              © {new Date().getFullYear()} Luminary Financial LLC, a subsidiary of Apex Vital Holdings LLC. All rights reserved.
             </div>
             <div style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>
               NAICS 522310 · Atlanta, GA
