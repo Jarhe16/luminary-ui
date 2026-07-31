@@ -62,12 +62,13 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: false, error: 'Unauthorized.' }, { status: 401 });
   }
 
- // Fetch fresh user record for tier info
+ // 1. Guard check at the top
   const userId = session?.user?.id;
   if (!userId) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
+  // 2. First query using userId
   const rows = await sql`SELECT tier FROM users WHERE id = ${userId}`;
   const user = rows[0] as any;
   const tier = user?.tier ?? 'foundation';
@@ -77,10 +78,13 @@ export async function POST(req: NextRequest) {
   const now = new Date();
   const monthStart = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-01`;
 
+  // 3. Second query using userId (Line 80-83)
   const countRows = await sql`
     SELECT COUNT(*) as count
     FROM audit_runs
-    WHERE user_id = ${session.user.id}
+    WHERE user_id = ${userId}
+  `;
+`;
       AND created_at >= ${monthStart}
   `;
   const count = Number((countRows[0] as any).count);
