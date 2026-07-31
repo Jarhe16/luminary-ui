@@ -62,8 +62,13 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: false, error: 'Unauthorized.' }, { status: 401 });
   }
 
-  // Fetch fresh user record for tier info
-  const rows = await sql`SELECT tier FROM users WHERE id = ${session.user.id}`;
+ // Fetch fresh user record for tier info
+  const userId = session?.user?.id;
+  if (!userId) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  const rows = await sql`SELECT tier FROM users WHERE id = ${userId}`;
   const user = rows[0] as any;
   const tier = user?.tier ?? 'foundation';
   const limit = getMonthlyLimit(tier);
