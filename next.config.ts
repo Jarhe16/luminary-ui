@@ -1,10 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  serverExternalPackages: ["better-sqlite3", "bcryptjs"],
-  turbopack: {
-    root: __dirname,
-  },
+  serverExternalPackages: ["pdf-parse", "mammoth"],
 };
 
 export default nextConfig;
