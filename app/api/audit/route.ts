@@ -5,6 +5,13 @@ import { getMonthlyLimit, getNextTier, TIER_LABELS, TIER_PRICES } from '@/lib/ti
 import { SYSTEM_DIRECTIVES, COMPLIANCE_RULES } from '@/lib/icm';
 import Anthropic from '@anthropic-ai/sdk';
 
+// Polyfill DOMMatrix for pdf-parse/pdfjs-dist in serverless Node.js
+if (typeof (globalThis as any).DOMMatrix === 'undefined') {
+  (globalThis as any).DOMMatrix = class DOMMatrix {
+    constructor() {}
+  };
+}
+
 // ── Text extraction helpers ──────────────────────────────────────────────────
 
 async function extractText(buffer: Buffer, filename: string): Promise<string> {
@@ -15,10 +22,10 @@ async function extractText(buffer: Buffer, filename: string): Promise<string> {
   }
 
   if (ext === 'pdf') {
-    const pdfParse = await import('pdf-parse/lib/pdf-parse.js');
-    const parseFn = (pdfParse as any).default ?? pdfParse;
-    const data = await parseFn(buffer);
-    return data.text;
+    const { extractText: unpdfExtract } = await import('unpdf');
+    const uint8 = new Uint8Array(buffer);
+    const { text } = await unpdfExtract(uint8);
+    return Array.isArray(text) ? text.join('\n') : text;
   }
 
   if (ext === 'docx') {
