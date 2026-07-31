@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  serverExternalPackages: ["pdf-parse", "mammoth", "pg"],
+  serverExternalPackages: ["pdf-parse", "mammoth", "postgres"],
 };
 
 export default nextConfig;

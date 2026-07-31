@@ -1,20 +1,11 @@
-import { Pool } from 'pg';
+import postgres from 'postgres';
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false },
-  max: 5,
+const sql = postgres(process.env.DATABASE_URL!, {
+  ssl: 'require',
+  max: 1,          // serverless: one connection per function invocation
+  idle_timeout: 20,
+  connect_timeout: 10,
 });
-
-async function sql(strings: TemplateStringsArray, ...values: any[]) {
-  let query = '';
-  strings.forEach((str, i) => {
-    query += str;
-    if (i < values.length) query += `$${i + 1}`;
-  });
-  const result = await pool.query(query, values);
-  return result.rows;
-}
 
 export default sql;
 
