@@ -155,13 +155,14 @@ export async function POST(req: NextRequest) {
 
     let rawResponse = (message.content[0] as any).text.trim();
 
-    // Strip markdown fences if present
-    if (rawResponse.startsWith('```')) {
-      rawResponse = rawResponse.replace(/^```[a-z]*\n?/, '').replace(/```$/, '').trim();
-    }
+// Strip markdown fences if present
+  if (rawResponse.startsWith("```")) {
+    rawResponse = rawResponse.replace(/^```[a-z]*\n?/, "").replace(/```$/, "").trim();
+  }
 
-    let auditData: any;
-    try {
+  let auditData: any;
+ 
+       try {
       auditData = JSON.parse(rawResponse);
     } catch {
       return NextResponse.json({ success: false, error: 'Failed to parse audit response.' }, { status: 500 });
