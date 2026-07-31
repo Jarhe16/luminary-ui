@@ -14,12 +14,17 @@ export const authConfig: NextAuthConfig = {
       const pathname = nextUrl.pathname;
       const role = (auth?.user as any)?.role;
 
-      // Always public
-      const publicPaths = ['/auth/login', '/auth/register'];
+      // Always public — marketing pages and auth routes
+      const publicPaths = [
+        '/auth/login', '/auth/register',
+        '/how-it-works', '/plans', '/about', '/contact', '/terms', '/privacy',
+      ];
       const isPublic = publicPaths.some(p => pathname.startsWith(p));
       const isApiAuth = pathname.startsWith('/api/auth');
       const isApiRegister = pathname.startsWith('/api/register');
-      if (isPublic || isApiAuth || isApiRegister) return true;
+      const isMarketingHome = pathname === '/';
+
+      if (isPublic || isApiAuth || isApiRegister || isMarketingHome) return true;
 
       // Must be logged in for everything else
       if (!isLoggedIn) return false;
