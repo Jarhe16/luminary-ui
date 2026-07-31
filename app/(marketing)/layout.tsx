@@ -113,7 +113,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
               © {new Date().getFullYear()} Luminary Financial LLC, a subsidiary of Apex Vital Holdings LLC. All rights reserved.
             </div>
             <div style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>
-              NAICS 522310 · Atlanta, GA
+              Atlanta, GA
             </div>
           </div>
         </div>
