@@ -1,10 +1,23 @@
-import { neon } from '@neondatabase/serverless';
+import { Pool } from 'pg';
 
-const sql = neon(process.env.DATABASE_URL!);
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false },
+  max: 5,
+});
+
+async function sql(strings: TemplateStringsArray, ...values: any[]) {
+  let query = '';
+  strings.forEach((str, i) => {
+    query += str;
+    if (i < values.length) query += `$${i + 1}`;
+  });
+  const result = await pool.query(query, values);
+  return result.rows;
+}
 
 export default sql;
 
-// Initialize tables on first run
 export async function initDB() {
   await sql`
     CREATE TABLE IF NOT EXISTS users (
