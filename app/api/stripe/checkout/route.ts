@@ -18,7 +18,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid tier.' }, { status: 400 });
     }
 
-    const rows = await sql`SELECT * FROM users WHERE id = ${session.user.id}`;
+    const userId = session.user.id as string;
+    const rows = await sql`SELECT * FROM users WHERE id = ${userId}`;
     const user = rows[0] as any;
     if (!user) {
       return NextResponse.json({ error: 'User not found.' }, { status: 404 });

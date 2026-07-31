@@ -8,10 +8,12 @@ export async function GET() {
     return NextResponse.json({ error: 'Unauthorized.' }, { status: 401 });
   }
 
+  const userId = session.user.id as string;
+
   const runs = await sql`
     SELECT id, filename, file_size_kb, finding_count, high_count, med_count, low_count, findings_json, created_at
     FROM audit_runs
-    WHERE user_id = ${session.user.id}
+    WHERE user_id = ${userId}
     ORDER BY created_at DESC
     LIMIT 50
   `;
