@@ -78,13 +78,13 @@ export async function POST(req: NextRequest) {
   const now = new Date();
   const monthStart = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-01`;
 
-  // 3. Query 2: Count audits (using userId, NOT session.user.id)
+ // 3. Query 2: Count audits
   const countRows = await sql`
     SELECT COUNT(*) as count
     FROM audit_runs
     WHERE user_id = ${userId}
-  `;
       AND created_at >= ${monthStart}
+  `;
   `;
   const count = Number((countRows[0] as any).count);
 
