@@ -23,13 +23,17 @@ type Stats = {
   high_findings_this_month: number;
 };
 
-const TIERS = ["foundation", "accelerator", "pinnacle"] as const;
+const TIERS = ["trial", "inactive", "foundation", "accelerator", "pinnacle"] as const;
 const TIER_LABELS: Record<string, string> = {
+  trial:       "Free Trial",
+  inactive:    "No Active Plan",
   foundation:  "Foundation",
   accelerator: "Accelerator",
   pinnacle:    "Pinnacle",
 };
 const TIER_COLORS: Record<string, string> = {
+  trial:       "#10b981",
+  inactive:    "#ef4444",
   foundation:  "#6b7280",
   accelerator: "#3b82f6",
   pinnacle:    "#c9a84c",

@@ -25,6 +25,8 @@ type UsageInfo = {
 
 type LimitError = {
   limitReached: true;
+  title?: string;
+  message?: string;
   tier: string;
   tierLabel: string;
   used: number;
@@ -255,10 +257,10 @@ export default function Home() {
             {usage && usage.limit !== null && (
               <div style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: "8px", padding: "0.875rem 1.25rem", marginBottom: "1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "0.5rem" }}>
                 <div style={{ fontSize: "0.8rem", color: "var(--muted)" }}>
-                  <span style={{ color: "var(--foreground)", fontWeight: 600 }}>{usage.tierLabel} Plan</span>
+                  <span style={{ color: "var(--foreground)", fontWeight: 600 }}>{usage.tier === "trial" ? "Free Trial" : `${usage.tierLabel} Plan`}</span>
                   {" — "}
                   <span style={{ color: usage.used >= usage.limit ? "#e74c3c" : "var(--foreground)" }}>
-                    {usage.used} / {usage.limit} audits used this month
+                    {usage.used} / {usage.limit} audits used {usage.tier === "trial" ? "in your trial" : "this month"}
                   </span>
                 </div>
                 <div style={{ width: "160px", height: "6px", background: "var(--surface-2)", borderRadius: "3px", overflow: "hidden" }}>
@@ -281,12 +283,10 @@ export default function Home() {
             {limitError && (
               <div style={{ background: "var(--surface)", border: "1px solid var(--accent)", borderRadius: "10px", padding: "1.5rem", marginBottom: "1.5rem" }}>
                 <div style={{ fontSize: "1rem", fontWeight: 700, color: "var(--accent)", marginBottom: "0.5rem" }}>
-                  Monthly Limit Reached
+                  {limitError.title ?? "Monthly Limit Reached"}
                 </div>
                 <p style={{ fontSize: "0.875rem", color: "var(--muted)", margin: "0 0 1rem" }}>
-                  Your <strong style={{ color: "var(--foreground)" }}>{limitError.tierLabel} plan</strong> includes{" "}
-                  <strong style={{ color: "var(--foreground)" }}>{limitError.limit} audits per month</strong>.
-                  You&apos;ve used all {limitError.used} this month.
+                  {limitError.message ?? `Your ${limitError.tierLabel} plan includes ${limitError.limit} audits per month. You've used all ${limitError.used} this month.`}
                 </p>
                 {limitError.nextTierLabel && (
                   <div style={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: "8px", padding: "1rem 1.25rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "0.75rem" }}>

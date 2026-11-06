@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import sql from '@/lib/db';
-import { getMonthlyLimit, getNextTier, TIER_LABELS, TIER_PRICES } from '@/lib/tiers';
+import { getMonthlyLimit, getNextTier, TIER_LABELS, TIER_PRICES, TRIAL_DAYS } from '@/lib/tiers';
 import { SYSTEM_DIRECTIVES, COMPLIANCE_RULES } from '@/lib/icm';
 import Anthropic from '@anthropic-ai/sdk';
 
@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
 
   // Fetch fresh user record for tier info
   const userId = session.user.id as string;
-  const rows = await sql`SELECT tier FROM users WHERE id = ${userId}`;
+  const rows = await sql`SELECT tier, created_at FROM users WHERE id = ${userId}`;
   const user = rows[0] as any;
   const tier = user?.tier ?? 'foundation';
   const limit = getMonthlyLimit(tier);
@@ -56,20 +56,41 @@ export async function POST(req: NextRequest) {
   const now = new Date();
   const monthStart = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-01';
 
-  const countRows = await sql`
-    SELECT COUNT(*) as count
-    FROM audit_runs
-    WHERE user_id = ${userId}
-      AND created_at >= ${monthStart}
-  `;
+  // Trial audits count across the whole trial; paid tiers count per calendar month
+  const isTrial = tier === 'trial';
+  const countRows = isTrial
+    ? await sql`SELECT COUNT(*) as count FROM audit_runs WHERE user_id = ${userId}`
+    : await sql`
+        SELECT COUNT(*) as count
+        FROM audit_runs
+        WHERE user_id = ${userId}
+          AND created_at >= ${monthStart}
+      `;
   const count = Number((countRows[0] as any).count);
 
+  // Trial expires TRIAL_DAYS after signup
+  const trialExpired = isTrial && user?.created_at &&
+    Date.now() > new Date(user.created_at).getTime() + TRIAL_DAYS * 24 * 60 * 60 * 1000;
+
   // Enforce tier limit
-  if (limit !== null && count >= limit) {
+  if (trialExpired || (limit !== null && count >= limit)) {
     const nextTier = getNextTier(tier);
+    let title = 'Monthly Limit Reached';
+    let message = `Your ${TIER_LABELS[tier as keyof typeof TIER_LABELS]} plan includes ${limit} audits per month. You've used all ${count} this month.`;
+    if (isTrial) {
+      title = 'Your Free Trial Has Ended';
+      message = trialExpired
+        ? `Your ${TRIAL_DAYS}-day free trial has ended. Choose a plan to keep running audits.`
+        : `You've used all ${limit} free trial audits. Choose a plan to keep running audits.`;
+    } else if (tier === 'inactive') {
+      title = 'No Active Plan';
+      message = 'Your subscription is no longer active. Choose a plan to keep running audits.';
+    }
     return NextResponse.json({
       success: false,
       limitReached: true,
+      title,
+      message,
       tier,
       tierLabel: TIER_LABELS[tier as keyof typeof TIER_LABELS],
       used: count,
