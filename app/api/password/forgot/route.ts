@@ -35,7 +35,14 @@ export async function POST(req: NextRequest) {
       VALUES (${user.id}, ${tokenHash}, NOW() + (${TOKEN_TTL_MINUTES} * INTERVAL '1 minute'))
     `;
 
-    const baseUrl = process.env.AUTH_URL || req.nextUrl.origin;
+    // Preview builds link back to their own preview URL; production uses the configured site URL.
+    // (Never build the link from the request's Host header — that allows reset-link poisoning.)
+    const previewHost = process.env.VERCEL_ENV === 'preview'
+      ? (process.env.VERCEL_BRANCH_URL || process.env.VERCEL_URL)
+      : undefined;
+    const baseUrl = previewHost
+      ? `https://${previewHost}`
+      : (process.env.AUTH_URL || 'https://luminary-ui-tau.vercel.app');
     const link = `${baseUrl}/auth/reset-password?token=${token}`;
     const firstName = String(user.name || '').split(' ')[0] || 'there';
 
