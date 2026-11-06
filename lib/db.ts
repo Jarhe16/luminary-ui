@@ -23,6 +23,9 @@ export async function initDB() {
     )
   `;
 
+  // Record when each user accepted the Terms of Service and Privacy Policy
+  await sql`ALTER TABLE users ADD COLUMN IF NOT EXISTS terms_accepted_at TIMESTAMPTZ`;
+
   await sql`
     CREATE TABLE IF NOT EXISTS audit_runs (
       id            SERIAL PRIMARY KEY,
