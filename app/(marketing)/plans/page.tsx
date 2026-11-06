@@ -86,7 +86,7 @@ const FAQ = [
   },
   {
     q: 'Is my document data secure?',
-    a: 'Uploaded documents are processed securely and are not kept after analysis — only the audit findings are saved to your audit history. Your data is never sold or used to train AI models, and is shared only with the service providers listed in our Privacy Policy that we need to run the platform. We follow SOC 2-aligned security practices.',
+    a: 'Uploaded documents are processed securely and are not kept after analysis — only the audit findings are saved to your audit history. Your data is never sold or used to train AI models, and is shared only with the service providers listed in our Privacy Policy that we need to run the platform. Luminary runs on SOC 2 Type 2-audited infrastructure (Vercel for hosting, Supabase for our database). Luminary has not yet completed its own SOC 2 audit; we\'ll share our security overview on request.',
   },
   {
     q: 'Can I cancel at any time?',

@@ -36,7 +36,7 @@ const FEATURES = [
   },
   {
     title: 'Enterprise-Grade Security',
-    desc: 'We don\'t keep your uploaded files — only the audit findings, saved to your history so you can re-export reports. Your clients\' data is never sold or used to train AI models. SOC 2-aligned practices from day one.',
+    desc: 'We don\'t keep your uploaded files — only the audit findings, saved to your history so you can re-export reports. Your clients\' data is never sold or used to train AI models. Built on SOC 2 Type 2-audited infrastructure (Vercel and Supabase), with encrypted connections and hashed passwords.',
     icon: '🔒',
   },
 ];
