@@ -10,7 +10,7 @@ export default function TermsPage() {
         {[
           {
             title: '1. Acceptance of Terms',
-            body: `By accessing or using the Luminary Financial Compliance Intelligence Platform ("Platform"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, do not use the Platform. These Terms constitute a legally binding agreement between you and Apex Vital Holdings LLC, doing business as Luminary Financial ("Company," "we," "us," or "our").`,
+            body: `By accessing or using the Luminary Financial Compliance Intelligence Platform ("Platform"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, do not use the Platform. These Terms constitute a legally binding agreement between you and Luminary Financial LLC, a subsidiary of Apex Vital Holdings LLC ("Company," "we," "us," or "our").`,
           },
           {
             title: '2. Description of Service',
@@ -34,7 +34,7 @@ export default function TermsPage() {
           },
           {
             title: '7. Subscription and Payment',
-            body: `Access to the Platform requires a paid subscription. Subscriptions are billed monthly unless an annual contract is in place. All fees are non-refundable except as provided in the 14-day money-back guarantee offered to new subscribers. You may cancel your subscription at any time through your account settings. Cancellation takes effect at the end of the current billing period.`,
+            body: `New accounts may use the Platform on a free trial, subject to the usage limits shown in your account. Continued access after the trial requires a paid subscription. Subscriptions are billed monthly unless an annual contract is in place. All fees are non-refundable except as provided in the 14-day money-back guarantee, which applies to a new subscriber's first paid month. You may cancel your subscription at any time through your account settings. Cancellation takes effect at the end of the current billing period.`,
           },
           {
             title: '8. Limitation of Liability',

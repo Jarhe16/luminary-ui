@@ -10,7 +10,7 @@ export default function PrivacyPage() {
         {[
           {
             title: '1. Introduction',
-            body: `Apex Vital Holdings LLC, doing business as Luminary Financial ("Company," "we," "us," or "our"), is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use the Luminary Financial Compliance Intelligence Platform ("Platform").`,
+            body: `Luminary Financial LLC, a subsidiary of Apex Vital Holdings LLC ("Company," "we," "us," or "our"), is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use the Luminary Financial Compliance Intelligence Platform ("Platform").`,
           },
           {
             title: '2. Information We Collect',

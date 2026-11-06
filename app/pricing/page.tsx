@@ -201,7 +201,7 @@ function PricingContent() {
         </div>
 
         <p style={{ textAlign: "center", marginTop: "2rem", fontSize: "0.8rem", color: "var(--muted)" }}>
-          All plans include a 14-day money-back guarantee. Cancel anytime.
+          14-day money-back guarantee on your first paid month. Cancel anytime.
         </p>
       </div>
     </main>

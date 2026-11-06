@@ -168,7 +168,7 @@ export default function PricingPage() {
           </div>
 
           <p style={{ textAlign: 'center', marginTop: '2rem', fontSize: '0.85rem', color: 'var(--muted)' }}>
-            All plans include a 14-day money-back guarantee · Annual pricing available at a discount
+            Every plan starts with a free trial, no credit card required · 14-day money-back guarantee on your first paid month · Annual pricing available at a discount
           </p>
         </div>
       </section>
