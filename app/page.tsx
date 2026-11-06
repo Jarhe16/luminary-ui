@@ -36,7 +36,7 @@ const FEATURES = [
   },
   {
     title: 'Enterprise-Grade Security',
-    desc: 'Documents are processed securely and never stored after analysis. Your clients\' data stays yours. SOC 2-aligned practices from day one.',
+    desc: 'We don\'t keep your uploaded files — only the audit findings, saved to your history so you can re-export reports. Your clients\' data is never sold or used to train AI models. SOC 2-aligned practices from day one.',
     icon: '🔒',
   },
 ];
@@ -264,7 +264,7 @@ export default function HomePage() {
                   {uc.desc}
                 </p>
                 <Link
-                  href={uc.tier === 'enterprise' ? '/contact' : '/pricing'}
+                  href={uc.tier === 'enterprise' ? '/contact' : '/plans'}
                   style={{
                     display: 'inline-block', padding: '8px 20px',
                     background: uc.tier === 'enterprise' ? 'transparent' : 'var(--accent)',

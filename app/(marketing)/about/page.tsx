@@ -83,7 +83,7 @@ export default function AboutPage() {
               },
               {
                 title: 'Confidentiality as Default',
-                desc: 'Your clients\' documents are private. We process, not store. Your data is never used to train models or shared with any third party.',
+                desc: 'Your clients\' documents are private. We don\'t keep your uploaded files — only the audit findings. Your data is never sold, never used to train AI models, and processed only by the providers listed in our Privacy Policy.',
               },
               {
                 title: 'Continuous Improvement',

@@ -57,8 +57,8 @@ export async function POST(req: NextRequest) {
       const sub    = event.data.object;
       const userId = sub.metadata?.userId;
       if (userId) {
-        await sql`UPDATE users SET tier = 'foundation' WHERE id = ${userId}`;
-        console.log(`[Stripe] Downgraded user ${userId} to foundation`);
+        await sql`UPDATE users SET tier = 'inactive' WHERE id = ${userId}`;
+        console.log(`[Stripe] Subscription ended for user ${userId}; tier set to inactive`);
       }
       break;
     }

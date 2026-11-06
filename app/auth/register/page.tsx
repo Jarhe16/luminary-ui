@@ -9,18 +9,23 @@ export default function RegisterPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [agreed, setAgreed] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!agreed) {
+      setError("Please agree to the Terms of Service and Privacy Policy to continue.");
+      return;
+    }
     setLoading(true);
     setError(null);
 
     const res = await fetch("/api/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, password }),
+      body: JSON.stringify({ name, email, password, acceptedTerms: agreed }),
     });
 
     const data = await res.json();
@@ -50,7 +55,7 @@ export default function RegisterPage() {
             Create Account
           </h1>
           <p style={{ color: "var(--muted)", fontSize: "0.85rem", marginBottom: "1.75rem" }}>
-            Start your Luminary compliance trial.
+            Start your free 7-day trial — 3 audits, no credit card required.
           </p>
 
           <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
@@ -66,6 +71,22 @@ export default function RegisterPage() {
               <label style={labelStyle}>Password</label>
               <input type="password" value={password} onChange={e => setPassword(e.target.value)} required style={inputStyle} placeholder="Min. 8 characters" />
             </div>
+
+            <label style={{ display: "flex", alignItems: "flex-start", gap: "0.6rem", fontSize: "0.85rem", color: "var(--muted)", lineHeight: 1.5, cursor: "pointer" }}>
+              <input
+                type="checkbox"
+                checked={agreed}
+                onChange={e => setAgreed(e.target.checked)}
+                required
+                style={{ marginTop: "3px", accentColor: "var(--accent)", cursor: "pointer" }}
+              />
+              <span>
+                I agree to the{" "}
+                <Link href="/terms" target="_blank" style={{ color: "var(--accent)", textDecoration: "none", fontWeight: 600 }}>Terms of Service</Link>
+                {" "}and{" "}
+                <Link href="/privacy" target="_blank" style={{ color: "var(--accent)", textDecoration: "none", fontWeight: 600 }}>Privacy Policy</Link>
+              </span>
+            </label>
 
             {error && (
               <div style={{ background: "#2d1212", border: "1px solid #e74c3c", borderRadius: "6px", padding: "0.75rem 1rem", color: "#e74c3c", fontSize: "0.85rem" }}>

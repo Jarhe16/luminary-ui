@@ -4,11 +4,18 @@ import sql from '@/lib/db';
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, email, password } = await req.json();
+    const { name, email, password, acceptedTerms } = await req.json();
 
     if (!name || !email || !password) {
       return NextResponse.json(
         { error: 'Name, email, and password are required.' },
+        { status: 400 }
+      );
+    }
+
+    if (acceptedTerms !== true) {
+      return NextResponse.json(
+        { error: 'You must agree to the Terms of Service and Privacy Policy.' },
         { status: 400 }
       );
     }
@@ -34,7 +41,8 @@ export async function POST(req: NextRequest) {
     const hashed = await bcrypt.hash(password, 12);
 
     await sql`
-      INSERT INTO users (name, email, password) VALUES (${name}, ${email}, ${hashed})
+      INSERT INTO users (name, email, password, tier, terms_accepted_at)
+      VALUES (${name}, ${email}, ${hashed}, 'trial', NOW())
     `;
 
     return NextResponse.json({ success: true });
