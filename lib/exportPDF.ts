@@ -114,7 +114,16 @@ export function generateAuditPDF(
   setTextColor(doc, COLORS.background);
   doc.setFontSize(9);
   doc.setFont('helvetica', 'bold');
-  doc.text(filename, margin + 4, y + 12.5);
+  // Shorten long file names so they never run into the STATUS column
+  const maxNameW = contentW / 2 - 10;
+  let shownName = filename;
+  if (doc.getTextWidth(shownName) > maxNameW) {
+    while (shownName.length > 4 && doc.getTextWidth(shownName + '…') > maxNameW) {
+      shownName = shownName.slice(0, -1);
+    }
+    shownName = shownName + '…';
+  }
+  doc.text(shownName, margin + 4, y + 12.5);
 
   const statusColor = result.findings.length === 0 ? COLORS.low : COLORS.high;
   setTextColor(doc, statusColor);
