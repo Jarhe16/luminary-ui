@@ -264,7 +264,7 @@ export default function HomePage() {
                   {uc.desc}
                 </p>
                 <Link
-                  href={uc.tier === 'enterprise' ? '/contact' : '/pricing'}
+                  href={uc.tier === 'enterprise' ? '/contact' : '/plans'}
                   style={{
                     display: 'inline-block', padding: '8px 20px',
                     background: uc.tier === 'enterprise' ? 'transparent' : 'var(--accent)',
