@@ -86,7 +86,7 @@ const FAQ = [
   },
   {
     q: 'Is my document data secure?',
-    a: 'Documents are processed securely and never stored permanently after analysis. Your data is never used for training or shared with third parties. We follow SOC 2-aligned security practices.',
+    a: 'Uploaded documents are processed securely and are not kept after analysis — only the audit findings are saved to your audit history. Your data is never sold or used to train AI models, and is shared only with the service providers listed in our Privacy Policy that we need to run the platform. We follow SOC 2-aligned security practices.',
   },
   {
     q: 'Can I cancel at any time?',

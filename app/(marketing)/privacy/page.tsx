@@ -22,11 +22,11 @@ export default function PrivacyPage() {
           },
           {
             title: '4. Document Data',
-            body: `Documents you upload are processed in memory to generate compliance findings. Documents are not permanently stored on our servers after the audit is complete. Audit results (finding counts, severities, and rule citations) are stored in your account history to enable the Audit History feature. You may delete your audit history at any time from your account settings.`,
+            body: `Documents you upload are processed in memory to generate compliance findings. Documents are not permanently stored on our servers after the audit is complete. Audit results (finding counts, severities, rule citations, and the short document excerpts each finding cites) are stored in your account history to enable the Audit History feature. You may delete your audit history at any time from your account settings.`,
           },
           {
             title: '5. Data Sharing',
-            body: `We share your data only with:\n• Stripe — for payment processing\n• Supabase — for database hosting (your data is stored in a dedicated project)\n• Anthropic — document text is sent to Claude AI for analysis (see Anthropic's privacy policy at anthropic.com)\n• Law enforcement — when required by applicable law\n\nWe do not sell, rent, or trade your personal information.`,
+            body: `We share your data only with:\n• Stripe — for payment processing\n• Supabase — for database hosting (your data is stored in a dedicated project)\n• Vercel — for application hosting\n• Anthropic, PBC — document text is sent to its Claude AI service for analysis (see Anthropic's privacy policy at anthropic.com)\n• Law enforcement — when required by applicable law\n\nWe do not sell, rent, or trade your personal information.`,
           },
           {
             title: '6. Data Security',
