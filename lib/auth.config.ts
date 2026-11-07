@@ -16,12 +16,12 @@ export const authConfig: NextAuthConfig = {
 
       // Always public — marketing pages and auth routes
       const publicPaths = [
-        '/auth/login', '/auth/register',
+        '/auth/login', '/auth/register', '/auth/forgot-password', '/auth/reset-password',
         '/how-it-works', '/plans', '/about', '/contact', '/terms', '/privacy',
       ];
       const isPublic = publicPaths.some(p => pathname.startsWith(p));
       const isApiAuth = pathname.startsWith('/api/auth');
-      const isApiRegister = pathname.startsWith('/api/register');
+      const isApiRegister = pathname.startsWith('/api/register') || pathname.startsWith('/api/password');
       const isMarketingHome = pathname === '/';
 
       if (isPublic || isApiAuth || isApiRegister || isMarketingHome) return true;

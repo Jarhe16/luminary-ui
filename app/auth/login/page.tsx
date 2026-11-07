@@ -9,6 +9,7 @@ function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
+  const justReset = searchParams.get("reset") === "true";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -37,12 +38,22 @@ function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+      {justReset && (
+        <div style={{ background: "#12261a", border: "1px solid #27ae60", borderRadius: "6px", padding: "0.75rem 1rem", color: "#27ae60", fontSize: "0.85rem" }}>
+          Your password has been updated. Sign in with your new password.
+        </div>
+      )}
       <div>
         <label style={labelStyle}>Email</label>
         <input type="email" value={email} onChange={e => setEmail(e.target.value)} required style={inputStyle} placeholder="you@firm.com" />
       </div>
       <div>
-        <label style={labelStyle}>Password</label>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+          <label style={labelStyle}>Password</label>
+          <Link href="/auth/forgot-password" style={{ fontSize: "0.75rem", color: "var(--accent)", textDecoration: "none", fontWeight: 600 }}>
+            Forgot password?
+          </Link>
+        </div>
         <input type="password" value={password} onChange={e => setPassword(e.target.value)} required style={inputStyle} placeholder="••••••••" />
       </div>
 
