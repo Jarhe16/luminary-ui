@@ -39,6 +39,14 @@ const TIER_COLORS: Record<string, string> = {
   pinnacle:    "#c9a84c",
 };
 
+// Postgres returns full ISO timestamps (with timezone); older SQLite values had none.
+function formatDate(value: string | null | undefined): string {
+  if (!value) return "—";
+  let d = new Date(value);
+  if (isNaN(d.getTime())) d = new Date(value + "Z");
+  return isNaN(d.getTime()) ? "—" : d.toLocaleDateString();
+}
+
 function StatCard({ label, value, sub }: { label: string; value: number | string; sub?: string }) {
   return (
     <div style={{ flex: 1, minWidth: "140px", background: "var(--surface)", border: "1px solid var(--border)", borderRadius: "8px", padding: "1.1rem 1.25rem" }}>
@@ -258,7 +266,7 @@ export default function AdminPage() {
                     {/* Last active */}
                     <td style={{ padding: "0.875rem 1rem", color: "var(--muted)", fontSize: "0.8rem", whiteSpace: "nowrap" }}>
                       {user.last_audit
-                        ? new Date(user.last_audit + "Z").toLocaleDateString()
+                        ? formatDate(user.last_audit)
                         : "Never"}
                     </td>
 
@@ -267,7 +275,7 @@ export default function AdminPage() {
                       {saving === user.id
                         ? <span style={{ fontSize: "0.75rem", color: "var(--accent)" }}>Saving...</span>
                         : <span style={{ fontSize: "0.75rem", color: "var(--muted)" }}>
-                            Joined {new Date(user.created_at + "Z").toLocaleDateString()}
+                            Joined {formatDate(user.created_at)}
                           </span>
                       }
                     </td>
