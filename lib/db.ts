@@ -53,4 +53,10 @@ export async function initDB() {
       created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()
     )
   `;
+
+  // Lock Supabase's public REST API out of every table (Row Level Security, no policies).
+  // The app connects directly as the table owner, which bypasses RLS, so it is unaffected.
+  await sql`ALTER TABLE users                 ENABLE ROW LEVEL SECURITY`;
+  await sql`ALTER TABLE audit_runs            ENABLE ROW LEVEL SECURITY`;
+  await sql`ALTER TABLE password_reset_tokens ENABLE ROW LEVEL SECURITY`;
 }
