@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
       : undefined;
     const baseUrl = previewHost
       ? `https://${previewHost}`
-      : (process.env.AUTH_URL || 'https://luminary-ui-tau.vercel.app');
+      : (process.env.AUTH_URL || 'https://www.luminaryfinancial.co');
     const link = `${baseUrl}/auth/reset-password?token=${token}`;
     const firstName = String(user.name || '').split(' ')[0] || 'there';
 
