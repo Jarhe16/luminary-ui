@@ -116,9 +116,9 @@ const ENTERPRISE = {
     'Bank-specific regulatory ruleset expansion',
     'Trust department and private banking division support',
     'Multiple RIA subsidiary management',
-    'API access for integration with existing compliance systems',
+    'API integration (on our roadmap)',
     'Dedicated implementation and onboarding',
-    'Custom SLA and security review',
+    'Security review support',
     'Annual contract with volume discounts',
   ],
 };
