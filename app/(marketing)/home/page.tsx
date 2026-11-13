@@ -41,12 +41,6 @@ const FEATURES = [
   },
 ];
 
-const TESTIMONIAL_PLACEHOLDER = {
-  quote: 'Luminary caught a fee disclosure gap in our ADV Part 2A that our outside counsel missed. At our firm\'s AUM, that finding alone justified the entire year\'s subscription.',
-  author: 'Chief Compliance Officer',
-  firm: 'Independent RIA, Southeast US',
-};
-
 const USE_CASES = [
   {
     audience: 'Independent RIAs',
@@ -282,18 +276,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Testimonial */}
-      <section style={{ background: 'var(--surface)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', padding: '5rem 2rem' }}>
-        <div style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
-          <div style={{ fontSize: '2rem', color: 'var(--accent)', marginBottom: '1.5rem', lineHeight: 1 }}>&ldquo;</div>
-          <p style={{ fontSize: '1.15rem', color: 'var(--foreground)', lineHeight: 1.7, fontStyle: 'italic', marginBottom: '2rem' }}>
-            {TESTIMONIAL_PLACEHOLDER.quote}
-          </p>
-          <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--foreground)' }}>{TESTIMONIAL_PLACEHOLDER.author}</div>
-          <div style={{ fontSize: '0.8rem', color: 'var(--muted)', marginTop: '4px' }}>{TESTIMONIAL_PLACEHOLDER.firm}</div>
-        </div>
-      </section>
-
       {/* CTA Banner */}
       <section style={{ padding: '6rem 2rem', textAlign: 'center' }}>
         <div style={{ maxWidth: '680px', margin: '0 auto' }}>
@@ -301,7 +283,7 @@ export default function HomePage() {
             Ready to stop guessing and start auditing?
           </h2>
           <p style={{ fontSize: '1rem', color: 'var(--muted)', lineHeight: 1.7, marginBottom: '2.5rem' }}>
-            Join RIA firms and financial institutions that use Luminary to catch compliance violations before regulators do. Start your free trial today — no credit card required.
+            Catch compliance issues before regulators do. Start your free 7-day trial today: 3 audits, no credit card required.
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link href="/auth/register" style={{
