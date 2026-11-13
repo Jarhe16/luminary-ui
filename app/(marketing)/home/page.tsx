@@ -62,8 +62,8 @@ const USE_CASES = [
   },
   {
     audience: 'Banks & Trust Departments',
-    desc: 'Your RIA subsidiary, trust department, and private banking division all generate compliance documents. One platform audits all of them. Contact us for enterprise and bank-specific pricing.',
-    cta: 'Contact for Enterprise',
+    desc: 'Your RIA subsidiary, trust department, and private banking division all generate compliance documents. One platform audits all of them. Contact us for institution and bank-specific pricing.',
+    cta: 'Contact for Institutions',
     tier: 'enterprise',
   },
 ];

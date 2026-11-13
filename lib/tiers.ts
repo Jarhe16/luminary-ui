@@ -19,7 +19,7 @@ export const TIER_LABELS: Record<Tier, string> = {
   inactive:    'No Active Plan',
   foundation:  'Foundation',
   accelerator: 'Accelerator',
-  pinnacle:    'Pinnacle',
+  pinnacle:    'Enterprise',
 };
 
 export const TIER_PRICES: Record<Tier, string> = {

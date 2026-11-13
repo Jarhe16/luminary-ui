@@ -95,7 +95,7 @@ export default function AboutPage() {
               },
               {
                 title: 'Built for Scale',
-                desc: 'Whether you run 5 audits a month or 500, the platform performs consistently. Enterprise and bank clients get the same precision at any volume.',
+                desc: 'Whether you run 5 audits a month or 500, the platform performs consistently. Institutional and bank clients get the same precision at any volume.',
               },
             ].map(v => (
               <div key={v.title} style={{

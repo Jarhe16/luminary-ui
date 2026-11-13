@@ -29,7 +29,7 @@ const TIER_LABELS: Record<string, string> = {
   inactive:    "No Active Plan",
   foundation:  "Foundation",
   accelerator: "Accelerator",
-  pinnacle:    "Pinnacle",
+  pinnacle:    "Enterprise",
 };
 const TIER_COLORS: Record<string, string> = {
   trial:       "#10b981",

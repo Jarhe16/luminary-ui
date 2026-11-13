@@ -110,7 +110,7 @@ export default function HowItWorksPage() {
               borderRadius: '8px', padding: '1.25rem 1.5rem', textAlign: 'center',
             }}>
               <span style={{ fontSize: '0.85rem', color: 'var(--muted)' }}>
-                Additional rules added continuously · Enterprise clients receive custom ruleset configuration
+                Additional rules added continuously · Institutional clients receive custom ruleset configuration
               </span>
             </div>
           </div>

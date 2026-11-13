@@ -28,10 +28,10 @@ const TIERS = [
   },
   {
     key:         "pinnacle",
-    name:        "Pinnacle",
+    name:        "Enterprise",
     price:       "$4,500",
     period:      "/month",
-    description: "Enterprise-grade compliance for large RIA firms and institutions.",
+    description: "Unlimited compliance coverage for large RIA firms and institutions.",
     features:    ["Unlimited audits", "PDF export", "Audit history", "Dedicated support", "Multi-user access", "Custom rule sets"],
     color:       "#c9a84c",
     highlight:   false,

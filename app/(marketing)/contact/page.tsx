@@ -19,7 +19,7 @@ export default function ContactPage() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               {[
                 { label: 'General Inquiries', value: 'hello@luminaryfinancial.co' },
-                { label: 'Enterprise & Bank Sales', value: 'hello@luminaryfinancial.co' },
+                { label: 'Institutional & Bank Sales', value: 'hello@luminaryfinancial.co' },
                 { label: 'Support', value: 'hello@luminaryfinancial.co' },
                 { label: 'Headquarters', value: 'Atlanta, GA' },
               ].map(item => (
@@ -111,7 +111,7 @@ export default function ContactPage() {
                   }}
                 >
                   <option>General Inquiry</option>
-                  <option>Enterprise / Bank Sales</option>
+                  <option>Institutional / Bank Sales</option>
                   <option>Pricing Question</option>
                   <option>Technical Support</option>
                   <option>Partnership</option>
