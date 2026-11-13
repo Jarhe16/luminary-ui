@@ -23,8 +23,10 @@ export const authConfig: NextAuthConfig = {
       const isApiAuth = pathname.startsWith('/api/auth');
       const isApiRegister = pathname.startsWith('/api/register') || pathname.startsWith('/api/password');
       const isMarketingHome = pathname === '/';
+      // Stripe calls this with no session; the route verifies Stripe's signature itself
+      const isStripeWebhook = pathname === '/api/stripe/webhook';
 
-      if (isPublic || isApiAuth || isApiRegister || isMarketingHome) return true;
+      if (isPublic || isApiAuth || isApiRegister || isMarketingHome || isStripeWebhook) return true;
 
       // Must be logged in for everything else
       if (!isLoggedIn) return false;
