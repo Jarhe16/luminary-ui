@@ -292,29 +292,50 @@ export default function Home() {
             )}
 
             {/* Usage meter */}
-            {usage && usage.limit !== null && (
-              <div style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: "8px", padding: "0.875rem 1.25rem", marginBottom: "1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "0.5rem" }}>
-                <div style={{ fontSize: "0.8rem", color: "var(--muted)" }}>
-                  <span style={{ color: "var(--foreground)", fontWeight: 600 }}>{usage.tier === "trial" ? "Free Trial" : `${usage.tierLabel} Plan`}</span>
-                  {" — "}
-                  <span style={{ color: usage.used >= usage.limit ? "#e74c3c" : "var(--foreground)" }}>
-                    {usage.used} / {usage.limit} audits used {usage.tier === "trial" ? "in your trial" : "this month"}
-                  </span>
-                  {usage.usedCredit && <span> · 1 prepaid credit used</span>}
-                  {typeof usage.credits === "number" && usage.credits > 0 && (
-                    <span> · {usage.credits} prepaid credit{usage.credits !== 1 ? "s" : ""} left</span>
-                  )}
+            {usage && (() => {
+              const planLabel = usage.tier === "trial" || usage.tier === "inactive" ? usage.tierLabel : `${usage.tierLabel} Plan`;
+              const credits = typeof usage.credits === "number" ? usage.credits : 0;
+              const creditsLeft = `${credits} prepaid credit${credits !== 1 ? "s" : ""} left`;
+              const box: React.CSSProperties = { background: "var(--surface)", border: "1px solid var(--border)", borderRadius: "8px", padding: "0.875rem 1.25rem", marginBottom: "1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "0.5rem" };
+
+              // Audit ran on a prepaid credit (no plan, trial over, or monthly allowance used up)
+              if (usage.usedCredit) {
+                return (
+                  <div style={box}>
+                    <div style={{ fontSize: "0.8rem", color: "var(--muted)" }}>
+                      <span style={{ color: "var(--foreground)", fontWeight: 600 }}>{planLabel}</span>
+                      {" · "}<span style={{ color: "var(--foreground)" }}>Ran on a prepaid credit</span>
+                      {" · "}{creditsLeft}
+                    </div>
+                  </div>
+                );
+              }
+
+              if (usage.limit === null) {
+                return (
+                  <div style={{ fontSize: "0.8rem", color: "var(--muted)", marginBottom: "1.5rem" }}>
+                    <span style={{ color: "var(--accent)", fontWeight: 600 }}>{planLabel}</span> — Unlimited audits
+                  </div>
+                );
+              }
+
+              const full = usage.used >= usage.limit;
+              return (
+                <div style={box}>
+                  <div style={{ fontSize: "0.8rem", color: "var(--muted)" }}>
+                    <span style={{ color: "var(--foreground)", fontWeight: 600 }}>{planLabel}</span>
+                    {" — "}
+                    <span style={{ color: full ? "#e74c3c" : "var(--foreground)" }}>
+                      {usage.used} / {usage.limit} audits used {usage.tier === "trial" ? "in your trial" : "this month"}
+                    </span>
+                    {credits > 0 && <span> · {creditsLeft}</span>}
+                  </div>
+                  <div style={{ width: "160px", height: "6px", background: "var(--surface-2)", borderRadius: "3px", overflow: "hidden" }}>
+                    <div style={{ height: "100%", width: `${Math.min(100, (usage.used / usage.limit) * 100)}%`, background: full ? "#e74c3c" : "var(--accent)", borderRadius: "3px", transition: "width 0.3s" }} />
+                  </div>
                 </div>
-                <div style={{ width: "160px", height: "6px", background: "var(--surface-2)", borderRadius: "3px", overflow: "hidden" }}>
-                  <div style={{ height: "100%", width: `${Math.min(100, (usage.used / usage.limit) * 100)}%`, background: usage.used >= usage.limit ? "#e74c3c" : "var(--accent)", borderRadius: "3px", transition: "width 0.3s" }} />
-                </div>
-              </div>
-            )}
-            {usage && usage.limit === null && (
-              <div style={{ fontSize: "0.8rem", color: "var(--muted)", marginBottom: "1.5rem" }}>
-                <span style={{ color: "var(--accent)", fontWeight: 600 }}>{usage.tierLabel} Plan</span> — Unlimited audits
-              </div>
-            )}
+              );
+            })()}
 
             {error && (
               <div style={{ background: "#2d1212", border: "1px solid #e74c3c", borderRadius: "8px", padding: "1rem 1.25rem", color: "#e74c3c", fontSize: "0.875rem", marginBottom: "1.5rem" }}>
