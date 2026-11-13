@@ -23,7 +23,7 @@ const TIERS = [
     price:       "$2,500",
     period:      "/month",
     description: "For growing RIA firms with higher document volume and team needs.",
-    features:    ["50 audits per month", "PDF export", "Audit history", "Priority email support", "Multi-user access"],
+    features:    ["50 audits per month", "PDF export", "Audit history", "Priority email support"],
     color:       "#3b82f6",
     highlight:   true,
   },
@@ -32,8 +32,41 @@ const TIERS = [
     name:        "Enterprise",
     price:       "$4,500",
     period:      "/month",
-    description: "Unlimited compliance coverage for large RIA firms and institutions.",
-    features:    ["Unlimited audits", "PDF export", "Audit history", "Dedicated support", "Multi-user access", "Custom rule sets"],
+    description: "High-volume compliance coverage for large RIA firms and institutions.",
+    features:    ["245 audits per month", "Additional audits $85 each", "PDF export", "Audit history", "Dedicated support contact", "Custom rule sets"],
+    color:       "#c9a84c",
+    highlight:   false,
+  },
+];
+
+const CONSULTANT_TIERS = [
+  {
+    key:         "consultant25",
+    name:        "Consultant 25",
+    price:       "$1,750",
+    period:      "/month",
+    description: "For independent compliance consultants reviewing documents for client firms.",
+    features:    ["25 audits per month", "PDF export", "Audit history", "Email support"],
+    color:       "#6b7280",
+    highlight:   false,
+  },
+  {
+    key:         "consultant50",
+    name:        "Consultant 50",
+    price:       "$2,500",
+    period:      "/month",
+    description: "For consulting practices with a steady book of client reviews.",
+    features:    ["50 audits per month", "PDF export", "Audit history", "Priority email support"],
+    color:       "#3b82f6",
+    highlight:   true,
+  },
+  {
+    key:         "consultant100",
+    name:        "Consultant 100",
+    price:       "$4,000",
+    period:      "/month",
+    description: "For consulting firms running high monthly review volume.",
+    features:    ["100 audits per month", "Additional audits $90 each", "PDF export", "Audit history", "Priority email support"],
     color:       "#c9a84c",
     highlight:   false,
   },
@@ -46,6 +79,16 @@ function PricingContent() {
   const [banner, setBanner] = useState<{ type: "success" | "error"; message: string } | null>(null);
 
   const currentTier = (session?.user as any)?.tier ?? "foundation";
+  const [audience, setAudience] = useState<"firms" | "consultants">("firms");
+  useEffect(() => {
+    if (String(currentTier).startsWith("consultant")) setAudience("consultants");
+  }, [currentTier]);
+  const visibleTiers = audience === "firms" ? TIERS : CONSULTANT_TIERS;
+  const tabStyle = (active: boolean): React.CSSProperties => ({
+    padding: "10px 22px", minHeight: "44px", borderRadius: "999px", border: "none",
+    background: active ? "var(--accent)" : "transparent", color: active ? "#0d0f1a" : "var(--muted)",
+    fontWeight: 700, fontSize: "0.9rem", cursor: "pointer",
+  });
 
   useEffect(() => {
     if (searchParams.get("success")) {
@@ -93,7 +136,7 @@ function PricingContent() {
           <BrandLogo />
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-          <Link href="/" style={{ fontSize: "0.8rem", color: "var(--muted)", textDecoration: "none" }}>← Dashboard</Link>
+          <Link href="/dashboard" style={{ fontSize: "0.8rem", color: "var(--muted)", textDecoration: "none" }}>← Dashboard</Link>
           <button onClick={() => signOut({ callbackUrl: "/auth/login" })} style={{ fontSize: "0.8rem", color: "var(--muted)", background: "none", border: "1px solid var(--border)", borderRadius: "4px", padding: "4px 12px", cursor: "pointer" }}>
             Sign Out
           </button>
@@ -127,9 +170,17 @@ function PricingContent() {
           </div>
         )}
 
+        {/* Firms / consultants toggle */}
+        <div style={{ display: "flex", justifyContent: "center", marginBottom: "2.5rem" }}>
+          <div role="group" aria-label="Choose plan type" style={{ display: "inline-flex", gap: "4px", padding: "4px", background: "var(--surface)", border: "1px solid var(--border)", borderRadius: "999px" }}>
+            <button type="button" aria-pressed={audience === "firms"} onClick={() => setAudience("firms")} style={tabStyle(audience === "firms")}>For firms</button>
+            <button type="button" aria-pressed={audience === "consultants"} onClick={() => setAudience("consultants")} style={tabStyle(audience === "consultants")}>For consultants</button>
+          </div>
+        </div>
+
         {/* Pricing cards */}
         <div style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap", justifyContent: "center" }}>
-          {TIERS.map(tier => {
+          {visibleTiers.map(tier => {
             const isCurrent  = currentTier === tier.key;
             const isLoading  = loading === tier.key;
 
@@ -193,7 +244,7 @@ function PricingContent() {
                     cursor: isCurrent ? "default" : "pointer",
                   }}
                 >
-                  {isCurrent ? "Current Plan" : isLoading ? "Redirecting..." : `Upgrade to ${tier.name}`}
+                  {isCurrent ? "Current Plan" : isLoading ? "Redirecting..." : `Choose ${tier.name}`}
                 </button>
               </div>
             );
@@ -202,6 +253,9 @@ function PricingContent() {
 
         <p style={{ textAlign: "center", marginTop: "2rem", fontSize: "0.8rem", color: "var(--muted)" }}>
           14-day money-back guarantee on your first paid month. Cancel anytime.
+        </p>
+        <p style={{ textAlign: "center", marginTop: "0.5rem", fontSize: "0.8rem", color: "var(--muted)" }}>
+          Need just one report? Run a single audit for $199 from your dashboard, no subscription.
         </p>
       </div>
     </main>
