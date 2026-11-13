@@ -54,9 +54,26 @@ export async function initDB() {
     )
   `;
 
+  // Prepaid audit credits (single reports and extra audits bought outside the monthly allowance)
+  await sql`ALTER TABLE users ADD COLUMN IF NOT EXISTS audit_credits INTEGER NOT NULL DEFAULT 0`;
+
+  // One row per paid one-time Checkout session, so a credit purchase is never applied twice
+  await sql`
+    CREATE TABLE IF NOT EXISTS credit_purchases (
+      id                SERIAL PRIMARY KEY,
+      stripe_session_id TEXT    NOT NULL UNIQUE,
+      user_id           INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+      kind              TEXT    NOT NULL,
+      credits           INTEGER NOT NULL,
+      amount_cents      INTEGER,
+      created_at        TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    )
+  `;
+
   // Lock Supabase's public REST API out of every table (Row Level Security, no policies).
   // The app connects directly as the table owner, which bypasses RLS, so it is unaffected.
   await sql`ALTER TABLE users                 ENABLE ROW LEVEL SECURITY`;
   await sql`ALTER TABLE audit_runs            ENABLE ROW LEVEL SECURITY`;
   await sql`ALTER TABLE password_reset_tokens ENABLE ROW LEVEL SECURITY`;
+  await sql`ALTER TABLE credit_purchases      ENABLE ROW LEVEL SECURITY`;
 }

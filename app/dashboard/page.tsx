@@ -22,6 +22,8 @@ type UsageInfo = {
   limit: number | null;
   tier: string;
   tierLabel: string;
+  usedCredit?: boolean;
+  credits?: number;
 };
 
 type LimitError = {
@@ -35,6 +37,8 @@ type LimitError = {
   nextTier: string | null;
   nextTierLabel: string | null;
   nextTierPrice: string | null;
+  extraAuditPrice?: number | null;
+  singleReportPrice?: number;
 };
 
 type AuditRun = {
@@ -116,6 +120,34 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<"audit" | "history">("audit");
   const [usage, setUsage] = useState<UsageInfo | null>(null);
   const [limitError, setLimitError] = useState<LimitError | null>(null);
+  const [extraQty, setExtraQty] = useState(5);
+  const [buying, setBuying] = useState(false);
+  const [purchaseNote, setPurchaseNote] = useState<string | null>(null);
+
+  useEffect(() => {
+    const p = new URLSearchParams(window.location.search).get("purchase");
+    if (p === "success") setPurchaseNote("Payment received. Your audit credits are ready; run your next audit whenever you like.");
+    if (p === "cancelled") setPurchaseNote("Checkout cancelled. You were not charged.");
+    if (p) window.history.replaceState(null, "", "/dashboard");
+  }, []);
+
+  const buyCredits = async (product: "single_report" | "extra_audit", quantity = 1) => {
+    setBuying(true); setError(null);
+    try {
+      const res = await fetch("/api/stripe/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ product, quantity }),
+      });
+      const data = await res.json();
+      if (data.url) { window.location.href = data.url; return; }
+      setError(data.error || "Could not start checkout.");
+    } catch (err: any) {
+      setError(`Checkout failed: ${err.message}`);
+    } finally {
+      setBuying(false);
+    }
+  };
 
   useEffect(() => {
     if (activeTab === "history") fetchHistory();
@@ -253,6 +285,12 @@ export default function Home() {
               )}
             </div>
 
+            {purchaseNote && (
+              <div style={{ background: "var(--surface)", border: "1px solid var(--accent)", borderRadius: "8px", padding: "0.875rem 1.25rem", marginBottom: "1.5rem", fontSize: "0.85rem", color: "var(--foreground)" }}>
+                {purchaseNote}
+              </div>
+            )}
+
             {/* Usage meter */}
             {usage && usage.limit !== null && (
               <div style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: "8px", padding: "0.875rem 1.25rem", marginBottom: "1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "0.5rem" }}>
@@ -262,6 +300,10 @@ export default function Home() {
                   <span style={{ color: usage.used >= usage.limit ? "#e74c3c" : "var(--foreground)" }}>
                     {usage.used} / {usage.limit} audits used {usage.tier === "trial" ? "in your trial" : "this month"}
                   </span>
+                  {usage.usedCredit && <span> · 1 prepaid credit used</span>}
+                  {typeof usage.credits === "number" && usage.credits > 0 && (
+                    <span> · {usage.credits} prepaid credit{usage.credits !== 1 ? "s" : ""} left</span>
+                  )}
                 </div>
                 <div style={{ width: "160px", height: "6px", background: "var(--surface-2)", borderRadius: "3px", overflow: "hidden" }}>
                   <div style={{ height: "100%", width: `${Math.min(100, (usage.used / usage.limit) * 100)}%`, background: usage.used >= usage.limit ? "#e74c3c" : "var(--accent)", borderRadius: "3px", transition: "width 0.3s" }} />
@@ -303,6 +345,39 @@ export default function Home() {
                     </a>
                   </div>
                 )}
+                {limitError.extraAuditPrice ? (
+                  <div style={{ marginTop: "0.75rem", background: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: "8px", padding: "1rem 1.25rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "0.75rem" }}>
+                    <div>
+                      <div style={{ fontSize: "0.8rem", color: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.08em" }}>Buy extra audits</div>
+                      <div style={{ fontWeight: 700, fontSize: "1rem", color: "var(--foreground)" }}>${limitError.extraAuditPrice} per audit</div>
+                      <div style={{ fontSize: "0.8rem", color: "var(--muted)", marginTop: "2px" }}>Credits never expire and are used only after your monthly audits.</div>
+                    </div>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                      <label htmlFor="extra-qty" style={{ fontSize: "0.8rem", color: "var(--muted)" }}>Qty</label>
+                      <input
+                        id="extra-qty" type="number" min={1} max={100} value={extraQty}
+                        onChange={(e) => setExtraQty(Math.max(1, Math.min(100, Number(e.target.value) || 1)))}
+                        style={{ width: "64px", padding: "6px 8px", background: "var(--surface)", border: "1px solid var(--border)", borderRadius: "6px", color: "var(--foreground)" }}
+                      />
+                      <button
+                        onClick={() => buyCredits("extra_audit", extraQty)} disabled={buying}
+                        style={{ padding: "8px 20px", background: "var(--accent)", color: "#0d0f1a", border: "none", borderRadius: "6px", fontWeight: 700, fontSize: "0.85rem", cursor: buying ? "wait" : "pointer" }}
+                      >
+                        {buying ? "Opening…" : `Buy for $${(extraQty * limitError.extraAuditPrice).toLocaleString()}`}
+                      </button>
+                    </div>
+                  </div>
+                ) : limitError.singleReportPrice ? (
+                  <div style={{ marginTop: "0.75rem", fontSize: "0.85rem", color: "var(--muted)", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "0.75rem" }}>
+                    <span>Need just one report? Run a single audit for ${limitError.singleReportPrice}, no subscription.</span>
+                    <button
+                      onClick={() => buyCredits("single_report")} disabled={buying}
+                      style={{ padding: "8px 20px", background: "transparent", color: "var(--accent)", border: "1px solid var(--accent)", borderRadius: "6px", fontWeight: 700, fontSize: "0.85rem", cursor: buying ? "wait" : "pointer" }}
+                    >
+                      {buying ? "Opening…" : `Buy a single report — $${limitError.singleReportPrice}`}
+                    </button>
+                  </div>
+                ) : null}
               </div>
             )}
 

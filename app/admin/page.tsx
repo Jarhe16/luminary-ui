@@ -24,13 +24,16 @@ type Stats = {
   high_findings_this_month: number;
 };
 
-const TIERS = ["trial", "inactive", "foundation", "accelerator", "pinnacle"] as const;
+const TIERS = ["trial", "inactive", "foundation", "accelerator", "pinnacle", "consultant25", "consultant50", "consultant100"] as const;
 const TIER_LABELS: Record<string, string> = {
   trial:       "Free Trial",
   inactive:    "No Active Plan",
   foundation:  "Foundation",
   accelerator: "Accelerator",
   pinnacle:    "Enterprise",
+  consultant25:  "Consultant 25",
+  consultant50:  "Consultant 50",
+  consultant100: "Consultant 100",
 };
 const TIER_COLORS: Record<string, string> = {
   trial:       "#10b981",
@@ -38,6 +41,9 @@ const TIER_COLORS: Record<string, string> = {
   foundation:  "#6b7280",
   accelerator: "#3b82f6",
   pinnacle:    "#c9a84c",
+  consultant25:  "#8b5cf6",
+  consultant50:  "#a855f7",
+  consultant100: "#d946ef",
 };
 
 // Postgres returns full ISO timestamps (with timezone); older SQLite values had none.

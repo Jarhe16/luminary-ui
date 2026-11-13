@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import sql from '@/lib/db';
-import { getMonthlyLimit, getNextTier, TIER_LABELS, TIER_PRICES, TRIAL_DAYS } from '@/lib/tiers';
+import { getMonthlyLimit, getNextTier, getExtraAuditPrice, TIER_LABELS, TIER_PRICES, TRIAL_DAYS, SINGLE_REPORT_PRICE } from '@/lib/tiers';
 import { SYSTEM_DIRECTIVES, COMPLIANCE_RULES } from '@/lib/icm';
 import Anthropic from '@anthropic-ai/sdk';
 
@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
 
   // Fetch fresh user record for tier info
   const userId = session.user.id as string;
-  const rows = await sql`SELECT tier, created_at FROM users WHERE id = ${userId}`;
+  const rows = await sql`SELECT tier, created_at, audit_credits FROM users WHERE id = ${userId}`;
   const user = rows[0] as any;
   const tier = user?.tier ?? 'foundation';
   const limit = getMonthlyLimit(tier);
@@ -72,8 +72,19 @@ export async function POST(req: NextRequest) {
   const trialExpired = isTrial && user?.created_at &&
     Date.now() > new Date(user.created_at).getTime() + TRIAL_DAYS * 24 * 60 * 60 * 1000;
 
-  // Enforce tier limit
-  if (trialExpired || (limit !== null && count >= limit)) {
+  // Enforce tier limit. Over the limit, a prepaid audit credit is used if one is available.
+  const overLimit = trialExpired || (limit !== null && count >= limit);
+  let usedCredit = false;
+  if (overLimit) {
+    const reserved = await sql`
+      UPDATE users SET audit_credits = audit_credits - 1
+      WHERE id = ${userId} AND audit_credits > 0
+      RETURNING audit_credits
+    `;
+    usedCredit = reserved.length > 0;
+  }
+
+  if (overLimit && !usedCredit) {
     const nextTier = getNextTier(tier);
     let title = 'Monthly Limit Reached';
     let message = `Your ${TIER_LABELS[tier as keyof typeof TIER_LABELS]} plan includes ${limit} audits per month. You've used all ${count} this month.`;
@@ -98,9 +109,13 @@ export async function POST(req: NextRequest) {
       nextTier,
       nextTierLabel: nextTier ? TIER_LABELS[nextTier] : null,
       nextTierPrice: nextTier ? TIER_PRICES[nextTier] : null,
+      extraAuditPrice: isTrial || tier === 'inactive' ? null : getExtraAuditPrice(tier),
+      singleReportPrice: SINGLE_REPORT_PRICE,
     }, { status: 429 });
   }
 
+  // If a credit was reserved and the audit does not complete, give it back.
+  let succeeded = false;
   try {
     const formData = await req.formData();
     const file = formData.get('file') as File | null;
@@ -184,10 +199,17 @@ export async function POST(req: NextRequest) {
       )
     `;
 
+    succeeded = true;
+    const creditRows = await sql`SELECT audit_credits FROM users WHERE id = ${userId}`;
     return NextResponse.json({
       success: true,
       ...auditData,
-      usage: { used: count + 1, limit, tier, tierLabel: TIER_LABELS[tier as keyof typeof TIER_LABELS] },
+      usage: {
+        used: count + 1, limit, tier,
+        tierLabel: TIER_LABELS[tier as keyof typeof TIER_LABELS],
+        usedCredit,
+        credits: Number((creditRows[0] as any)?.audit_credits ?? 0),
+      },
     });
 
   } catch (error: any) {
@@ -196,5 +218,9 @@ export async function POST(req: NextRequest) {
       { success: false, error: error.message || 'Audit failed.' },
       { status: 500 }
     );
+  } finally {
+    if (usedCredit && !succeeded) {
+      await sql`UPDATE users SET audit_credits = audit_credits + 1 WHERE id = ${userId}`;
+    }
   }
 }
