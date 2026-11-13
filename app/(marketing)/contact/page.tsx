@@ -40,7 +40,7 @@ export default function ContactPage() {
                 For Banks & Institutions
               </div>
               <p style={{ fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.6, margin: 0 }}>
-                If you represent a bank, trust department, or financial institution with complex compliance needs, reach out directly. We build custom enterprise arrangements including bank-specific rulesets, API access, and dedicated onboarding.
+                If you represent a bank, trust department, or financial institution with complex compliance needs, reach out directly. We build custom arrangements including bank-specific rulesets, security review support, and dedicated onboarding. API integration is on our roadmap.
               </p>
             </div>
           </div>

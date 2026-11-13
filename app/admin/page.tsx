@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import BrandLogo from "@/components/BrandLogo";
 
 type UserRow = {
   id: number;
@@ -120,8 +121,7 @@ export default function AdminPage() {
       {/* Header */}
       <header style={{ borderBottom: "1px solid var(--border)", padding: "0.875rem 2rem", display: "flex", alignItems: "center", justifyContent: "space-between", background: "var(--surface)" }}>
         <div>
-          <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--accent)", letterSpacing: "0.05em" }}>LUMINARY FINANCIAL</div>
-          <div style={{ fontSize: "0.65rem", color: "var(--muted)", letterSpacing: "0.15em", textTransform: "uppercase" }}>Admin Dashboard</div>
+          <BrandLogo />
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
           <a href="/" style={{ fontSize: "0.8rem", color: "var(--muted)", textDecoration: "none" }}>← Platform</a>

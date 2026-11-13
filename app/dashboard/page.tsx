@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useSession, signOut } from "next-auth/react";
 import { generateAuditPDF } from "@/lib/exportPDF";
+import BrandLogo from "@/components/BrandLogo";
 
 type Finding = {
   rule_id: string;
@@ -167,8 +168,7 @@ export default function Home() {
       {/* Header */}
       <header style={{ borderBottom: "1px solid var(--border)", padding: "0.875rem 2rem", display: "flex", alignItems: "center", justifyContent: "space-between", background: "var(--surface)" }}>
         <div>
-          <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--accent)", letterSpacing: "0.05em" }}>LUMINARY FINANCIAL</div>
-          <div style={{ fontSize: "0.65rem", color: "var(--muted)", letterSpacing: "0.15em", textTransform: "uppercase" }}>Compliance Intelligence Platform</div>
+          <BrandLogo />
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
           {session?.user && (

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import PlanTabs from './PlanTabs';
 
 const TIERS = [
   {
@@ -43,18 +44,69 @@ const TIERS = [
     name: 'Enterprise',
     price: '$4,500',
     period: '/month',
-    desc: 'For large RIA firms, institutional advisers, and organizations that require unlimited compliance coverage.',
+    desc: 'For large RIA firms and institutional advisers with high-volume, in-house compliance review.',
     features: [
-      'Unlimited document audits',
+      '245 document audits per month',
+      'Additional audits $85 each',
       'Everything in Accelerator',
       'Dedicated support contact',
       'Custom rule set configuration',
-      'White-labeled PDF reports',
-      'SLA guarantees',
     ],
     color: '#c9a84c',
     highlight: false,
     cta: 'Start with Enterprise',
+  },
+];
+
+const CONSULTANT_TIERS = [
+  {
+    key: 'consultant25',
+    name: 'Consultant 25',
+    price: '$1,750',
+    period: '/month',
+    desc: 'For compliance consultants reviewing documents for a handful of client firms.',
+    features: [
+      '25 document audits per month',
+      'Use for any of your client firms',
+      'Branded PDF audit reports',
+      'Full audit history',
+    ],
+    color: '#4a90d9',
+    highlight: false,
+    cta: 'Start with Consultant 25',
+  },
+  {
+    key: 'consultant50',
+    name: 'Consultant 50',
+    price: '$2,500',
+    period: '/month',
+    desc: 'For growing consulting practices with a steady flow of client documents.',
+    features: [
+      '50 document audits per month',
+      'Use for any of your client firms',
+      'Branded PDF audit reports',
+      'Full audit history',
+    ],
+    color: '#3b82f6',
+    highlight: true,
+    cta: 'Start with Consultant 50',
+  },
+  {
+    key: 'consultant100',
+    name: 'Consultant 100',
+    price: '$4,000',
+    period: '/month',
+    desc: 'For midsize consulting firms reviewing documents across many clients every month.',
+    features: [
+      '100 document audits per month',
+      'Additional audits $90 each',
+      'Use for any of your client firms',
+      'Branded PDF audit reports',
+      'Full audit history',
+    ],
+    color: '#c9a84c',
+    highlight: false,
+    cta: 'Start with Consultant 100',
   },
 ];
 
@@ -64,14 +116,22 @@ const ENTERPRISE = {
     'Bank-specific regulatory ruleset expansion',
     'Trust department and private banking division support',
     'Multiple RIA subsidiary management',
-    'API access for integration with existing compliance systems',
+    'API integration (on our roadmap)',
     'Dedicated implementation and onboarding',
-    'Custom SLA and security review',
+    'Security review support',
     'Annual contract with volume discounts',
   ],
 };
 
 const FAQ = [
+  {
+    q: 'Which plans are for firms and which are for consultants?',
+    a: 'Foundation, Accelerator and Enterprise are for a firm\'s own internal compliance work, including reviewing third-party fund documents for due diligence. Consultant plans are for compliance consultants who deliver document reviews to their own client firms.',
+  },
+  {
+    q: 'What happens if I need more audits in a month?',
+    a: 'Enterprise and Consultant 100 customers can buy additional audits from their dashboard ($85 each on Enterprise, $90 each on Consultant 100). Other plans can upgrade at any time, and consultants can buy single reports for $199 each.',
+  },
   {
     q: 'What types of documents can Luminary audit?',
     a: 'Luminary audits fund prospectuses, ADV Part 2A disclosures, private placement memoranda (PPMs), offering memoranda, client fee agreements, and any other compliance document in PDF, DOCX, or TXT format.',
@@ -82,7 +142,7 @@ const FAQ = [
   },
   {
     q: 'Can banks and trust departments use Luminary?',
-    a: 'Yes. Banks with RIA subsidiaries, trust departments, and private banking divisions with SEC filing obligations can use Luminary. Contact us for enterprise and bank-specific pricing and custom ruleset configuration.',
+    a: 'Yes. Banks with RIA subsidiaries, trust departments, and private banking divisions with SEC filing obligations can use Luminary. Contact us for institution and bank-specific pricing and custom ruleset configuration.',
   },
   {
     q: 'Is my document data secure?',
@@ -108,7 +168,7 @@ export default function PricingPage() {
             Simple, transparent pricing.
           </h1>
           <p style={{ fontSize: '1.05rem', color: 'var(--muted)', lineHeight: 1.7 }}>
-            Choose the plan that fits your firm. All plans include full platform access. No hidden fees. Cancel any time.
+            Plans for firms reviewing their own documents, and for consultants serving many clients. No hidden fees. Cancel any time.
           </p>
         </div>
       </section>
@@ -116,56 +176,7 @@ export default function PricingPage() {
       {/* Tiers */}
       <section style={{ padding: '5rem 2rem' }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem', alignItems: 'start' }}>
-            {TIERS.map(tier => (
-              <div key={tier.key} style={{
-                background: 'var(--surface)',
-                border: `2px solid ${tier.highlight ? tier.color : 'var(--border)'}`,
-                borderRadius: '12px', padding: '2.25rem 2rem',
-                position: 'relative',
-                display: 'flex', flexDirection: 'column',
-              }}>
-                {tier.highlight && (
-                  <div style={{
-                    position: 'absolute', top: '-14px', left: '50%', transform: 'translateX(-50%)',
-                    background: tier.color, color: '#fff', fontSize: '0.7rem', fontWeight: 700,
-                    padding: '3px 16px', borderRadius: '20px', letterSpacing: '0.1em', textTransform: 'uppercase',
-                    whiteSpace: 'nowrap',
-                  }}>
-                    Most Popular
-                  </div>
-                )}
-
-                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: tier.color, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>
-                  {tier.name}
-                </div>
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px', marginBottom: '0.75rem' }}>
-                  <span style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--foreground)' }}>{tier.price}</span>
-                  <span style={{ fontSize: '0.9rem', color: 'var(--muted)' }}>{tier.period}</span>
-                </div>
-                <p style={{ fontSize: '0.85rem', color: 'var(--muted)', lineHeight: 1.6, marginBottom: '1.5rem' }}>{tier.desc}</p>
-
-                <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 2rem', flex: 1 }}>
-                  {tier.features.map(f => (
-                    <li key={f} style={{ display: 'flex', gap: '8px', alignItems: 'flex-start', padding: '0.35rem 0', fontSize: '0.875rem', color: '#a0a8c0' }}>
-                      <span style={{ color: tier.color, fontWeight: 700, flexShrink: 0 }}>✓</span> {f}
-                    </li>
-                  ))}
-                </ul>
-
-                <Link href="/auth/register" style={{
-                  display: 'block', textAlign: 'center', padding: '10px',
-                  background: tier.highlight ? tier.color : 'var(--surface-2)',
-                  color: tier.highlight ? '#fff' : tier.color,
-                  border: `1px solid ${tier.color}`,
-                  borderRadius: '6px', fontWeight: 700, fontSize: '0.9rem',
-                  textDecoration: 'none',
-                }}>
-                  {tier.cta}
-                </Link>
-              </div>
-            ))}
-          </div>
+          <PlanTabs firmTiers={TIERS} consultantTiers={CONSULTANT_TIERS} />
 
           <p style={{ textAlign: 'center', marginTop: '2rem', fontSize: '0.85rem', color: 'var(--muted)' }}>
             Every plan starts with a free trial, no credit card required · 14-day money-back guarantee on your first paid month · Annual pricing available at a discount

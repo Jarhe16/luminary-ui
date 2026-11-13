@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import BrandLogo from '@/components/BrandLogo';
 
 export default function MarketingLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -13,14 +14,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       }}>
         <Link href="/" style={{ textDecoration: 'none' }}>
-          <div>
-            <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--accent)', letterSpacing: '0.08em' }}>
-              LUMINARY FINANCIAL
-            </div>
-            <div style={{ fontSize: '0.55rem', color: 'var(--muted)', letterSpacing: '0.18em', textTransform: 'uppercase', marginTop: '-2px' }}>
-              Compliance Intelligence Platform
-            </div>
-          </div>
+          <BrandLogo />
         </Link>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
@@ -63,8 +57,8 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: '3rem', marginBottom: '3rem' }}>
             <div>
-              <div style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--accent)', letterSpacing: '0.08em', marginBottom: '0.5rem' }}>
-                LUMINARY FINANCIAL
+              <div style={{ marginBottom: '0.75rem' }}>
+                <BrandLogo size="md" />
               </div>
               <div style={{ fontSize: '0.7rem', color: 'var(--muted)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1rem' }}>
                 Compliance Intelligence Platform
