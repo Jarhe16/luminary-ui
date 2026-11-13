@@ -4,6 +4,7 @@ import { useState, useEffect, Suspense } from "react";
 import { useSession, signOut } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import BrandLogo from "@/components/BrandLogo";
 
 const TIERS = [
   {
@@ -89,8 +90,7 @@ function PricingContent() {
       {/* Header */}
       <header style={{ borderBottom: "1px solid var(--border)", padding: "0.875rem 2rem", display: "flex", alignItems: "center", justifyContent: "space-between", background: "var(--surface)" }}>
         <div>
-          <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--accent)", letterSpacing: "0.05em" }}>LUMINARY FINANCIAL</div>
-          <div style={{ fontSize: "0.65rem", color: "var(--muted)", letterSpacing: "0.15em", textTransform: "uppercase" }}>Compliance Intelligence Platform</div>
+          <BrandLogo />
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
           <Link href="/" style={{ fontSize: "0.8rem", color: "var(--muted)", textDecoration: "none" }}>← Dashboard</Link>
