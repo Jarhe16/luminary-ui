@@ -40,7 +40,7 @@ const TIERS = [
   },
   {
     key: 'pinnacle',
-    name: 'Pinnacle',
+    name: 'Enterprise',
     price: '$4,500',
     period: '/month',
     desc: 'For large RIA firms, institutional advisers, and organizations that require unlimited compliance coverage.',
@@ -54,7 +54,7 @@ const TIERS = [
     ],
     color: '#c9a84c',
     highlight: false,
-    cta: 'Start with Pinnacle',
+    cta: 'Start with Enterprise',
   },
 ];
 
@@ -178,7 +178,7 @@ export default function PricingPage() {
         <div style={{ maxWidth: '900px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
           <div>
             <div style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--accent)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1rem' }}>
-              Enterprise & Banks
+              Institutions & Banks
             </div>
             <h2 style={{ fontSize: '2rem', fontWeight: 800, lineHeight: 1.2, marginBottom: '1rem' }}>
               Built for institutions with complex compliance needs.
@@ -191,7 +191,7 @@ export default function PricingPage() {
               color: '#0d0f1a', borderRadius: '8px', fontWeight: 800,
               fontSize: '0.9rem', textDecoration: 'none',
             }}>
-              Contact Enterprise Sales
+              Contact Institutional Sales
             </Link>
           </div>
 
