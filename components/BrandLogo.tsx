@@ -4,7 +4,7 @@
 type Props = { size?: 'sm' | 'md'; mark?: boolean };
 
 export default function BrandLogo({ size = 'sm', mark = false }: Props) {
-  const s = size === 'md' ? { icon: 44, script: 38, caps: 10 } : { icon: 34, script: 30, caps: 8 };
+  const s = size === 'md' ? { icon: 52, script: 44, caps: 11 } : { icon: 42, script: 36, caps: 9 };
   return (
     <span style={{ display: 'inline-flex', alignItems: 'center', gap: '10px' }}>
       <svg width={s.icon} height={s.icon} viewBox="0 0 260 260" role="img" aria-label="Luminary Financial">

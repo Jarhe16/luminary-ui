@@ -51,8 +51,6 @@ const TIERS = [
       'Everything in Accelerator',
       'Dedicated support contact',
       'Custom rule set configuration',
-      'White-labeled PDF reports',
-      'SLA guarantees',
     ],
     color: '#c9a84c',
     highlight: false,
