@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
-import { stripe, PRICE_IDS, ONE_TIME_PRICE_IDS } from '@/lib/stripe';
+import { stripe, PRICE_IDS, ONE_TIME_PRICE_IDS, CHECKOUT_PAUSED, CHECKOUT_PAUSED_MESSAGE } from '@/lib/stripe';
 import { SUBSCRIBABLE_TIERS, EXTRA_AUDIT_MAX_QTY, getExtraAuditPrice, Tier } from '@/lib/tiers';
 import sql from '@/lib/db';
 
@@ -13,6 +13,10 @@ export async function POST(req: NextRequest) {
     const session = await auth();
     if (!session?.user) {
       return NextResponse.json({ error: 'Unauthorized.' }, { status: 401 });
+    }
+
+    if (CHECKOUT_PAUSED) {
+      return NextResponse.json({ checkoutPaused: true, error: CHECKOUT_PAUSED_MESSAGE }, { status: 503 });
     }
 
     const body = await req.json();

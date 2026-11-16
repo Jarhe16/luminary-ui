@@ -76,7 +76,7 @@ function PricingContent() {
   const { data: session } = useSession();
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState<string | null>(null);
-  const [banner, setBanner] = useState<{ type: "success" | "error"; message: string } | null>(null);
+  const [banner, setBanner] = useState<{ type: "success" | "error" | "info"; message: string } | null>(null);
 
   const currentTier = (session?.user as any)?.tier ?? "foundation";
   const [audience, setAudience] = useState<"firms" | "consultants">("firms");
@@ -119,7 +119,7 @@ function PricingContent() {
       if (data.url) {
         window.location.href = data.url;
       } else {
-        setBanner({ type: "error", message: data.error || "Something went wrong." });
+        setBanner({ type: data.checkoutPaused ? "info" : "error", message: data.error || "Something went wrong." });
       }
     } catch (err: any) {
       setBanner({ type: "error", message: err.message });
@@ -157,11 +157,11 @@ function PricingContent() {
         {/* Banner */}
         {banner && (
           <div style={{
-            background: banner.type === "success" ? "#0e2d1a" : "#2d1212",
-            border: `1px solid ${banner.type === "success" ? "#27ae60" : "#e74c3c"}`,
+            background: banner.type === "success" ? "#0e2d1a" : banner.type === "info" ? "var(--surface)" : "#2d1212",
+            border: `1px solid ${banner.type === "success" ? "#27ae60" : banner.type === "info" ? "var(--accent)" : "#e74c3c"}`,
             borderRadius: "8px",
             padding: "1rem 1.25rem",
-            color: banner.type === "success" ? "#27ae60" : "#e74c3c",
+            color: banner.type === "success" ? "#27ae60" : banner.type === "info" ? "var(--foreground)" : "#e74c3c",
             fontSize: "0.875rem",
             marginBottom: "2rem",
             textAlign: "center",

@@ -141,6 +141,7 @@ export default function Home() {
       });
       const data = await res.json();
       if (data.url) { window.location.href = data.url; return; }
+      if (data.checkoutPaused) { setPurchaseNote(data.error); return; }
       setError(data.error || "Could not start checkout.");
     } catch (err: any) {
       setError(`Checkout failed: ${err.message}`);

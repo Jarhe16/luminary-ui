@@ -27,6 +27,14 @@ export const ONE_TIME_PRICE_IDS = {
   extra_audit_consultant100: process.env.STRIPE_PRICE_EXTRA_AUDIT_CONSULTANT100 || sandbox('price_1UbRnbJz868FFb6cDK233bbO'),
 };
 
+// Safety switch: the live site must not take payments through a sandbox (test) key —
+// real cards would be declined and Stripe's public test cards would unlock plans for free.
+// Turns off by itself once production has a live key.
+export const SUPPORT_EMAIL = 'hello@luminaryfinancial.co';
+export const CHECKOUT_PAUSED = process.env.VERCEL_ENV === 'production' && !isLive;
+export const CHECKOUT_PAUSED_MESSAGE =
+  `Online checkout opens shortly. Email us at ${SUPPORT_EMAIL} and we'll activate your plan today.`;
+
 export function tierFromPriceId(priceId: string | undefined | null): string | null {
   if (!priceId) return null;
   for (const [tier, id] of Object.entries(PRICE_IDS)) {
