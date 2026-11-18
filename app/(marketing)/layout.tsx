@@ -65,7 +65,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
                 Compliance Intelligence Platform
               </div>
               <p style={{ fontSize: '0.85rem', color: 'var(--muted)', lineHeight: 1.6, maxWidth: '280px' }}>
-                AI-powered compliance auditing for Registered Investment Advisers and financial institutions. Built on the ICM methodology.
+                AI-powered compliance auditing for Registered Investment Advisers and financial institutions.
               </p>
               <div style={{ marginTop: '1rem', fontSize: '0.8rem', color: 'var(--muted)' }}>
                 A subsidiary of <span style={{ color: 'var(--foreground)' }}>Apex Vital Holdings LLC</span>
