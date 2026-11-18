@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import HeroStar from '@/components/HeroStar';
 
 const STATS = [
   { value: '$97T+', label: 'Assets under RIA management in the US' },
@@ -86,6 +87,8 @@ export default function HomePage() {
           position: 'absolute', inset: 0, zIndex: 1,
           background: 'radial-gradient(ellipse 80% 60% at 50% 40%, transparent 30%, var(--background) 100%)',
         }} />
+        {/* Brand star + light beam */}
+        <HeroStar />
 
         <div style={{ position: 'relative', zIndex: 2, maxWidth: '820px' }}>
           <div style={{

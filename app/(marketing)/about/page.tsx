@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { COMPANY } from '@/lib/company';
 
 export default function AboutPage() {
   return (
@@ -39,12 +40,12 @@ export default function AboutPage() {
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
             {[
-              { label: 'Founded', value: '2024' },
-              { label: 'Headquarters', value: 'Atlanta, GA' },
+              { label: 'Founded', value: '2026' },
+              { label: 'Headquarters', value: `${COMPANY.addressLine1}, ${COMPANY.addressLine2}` },
               { label: 'Legal Entity', value: 'Luminary Financial LLC' },
               { label: 'Parent Company', value: 'Apex Vital Holdings LLC' },
-              { label: 'Industry', value: 'Compliance Intelligence · Investment Advice' },
-              { label: 'Contact', value: 'hello@luminaryfinancial.co' },
+              { label: 'Industry', value: 'Compliance Technology (RegTech)' },
+              { label: 'Contact', value: `${COMPANY.email} · ${COMPANY.phone}` },
             ].map(item => (
               <div key={item.label} style={{
                 display: 'grid', gridTemplateColumns: '140px 1fr',

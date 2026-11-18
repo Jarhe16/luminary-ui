@@ -54,7 +54,7 @@ export default function TermsPage() {
           },
           {
             title: '12. Contact',
-            body: `Questions about these Terms may be directed to: hello@luminaryfinancial.co\nLuminary Financial LLC\nA subsidiary of Apex Vital Holdings LLC\nAtlanta, GA`,
+            body: `Questions about these Terms may be directed to: hello@luminaryfinancial.co\nLuminary Financial LLC\nA subsidiary of Apex Vital Holdings LLC\n3379 Peachtree Road NE, Suite 655-O85\nAtlanta, GA 30326\n(770) 776-6650`,
           },
         ].map(section => (
           <div key={section.title} style={{ marginBottom: '2.5rem' }}>
