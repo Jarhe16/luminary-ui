@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { COMPANY } from '@/lib/company';
 import BrandLogo from '@/components/BrandLogo';
 
 export default function MarketingLayout({ children }: { children: React.ReactNode }) {
@@ -96,18 +97,19 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
                   <Link href={href} style={{ fontSize: '0.85rem', color: 'var(--muted)', textDecoration: 'none' }}>{label}</Link>
                 </div>
               ))}
-              <div style={{ marginTop: '1rem', fontSize: '0.8rem', color: 'var(--muted)' }}>
-                hello@luminaryfinancial.co
+              <div style={{ marginTop: '1rem', fontSize: '0.8rem', color: 'var(--muted)', lineHeight: 1.7 }}>
+                <a href={`mailto:${COMPANY.email}`} style={{ color: 'var(--muted)', textDecoration: 'none' }}>{COMPANY.email}</a><br />
+                <a href={COMPANY.phoneHref} style={{ color: 'var(--muted)', textDecoration: 'none' }}>{COMPANY.phone}</a>
               </div>
             </div>
           </div>
 
-          <div style={{ borderTop: '1px solid var(--border)', paddingTop: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div style={{ borderTop: '1px solid var(--border)', paddingTop: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem' }}>
             <div style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>
               © {new Date().getFullYear()} Luminary Financial LLC, a subsidiary of Apex Vital Holdings LLC. All rights reserved.
             </div>
             <div style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>
-              Atlanta, GA
+              {COMPANY.addressLine1}, {COMPANY.addressLine2}
             </div>
           </div>
         </div>

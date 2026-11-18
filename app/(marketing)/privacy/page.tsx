@@ -54,7 +54,7 @@ export default function PrivacyPage() {
           },
           {
             title: '12. Contact',
-            body: `Privacy questions or requests may be directed to:\nhello@luminaryfinancial.co\nLuminary Financial LLC\nA subsidiary of Apex Vital Holdings LLC\nAtlanta, GA`,
+            body: `Privacy questions or requests may be directed to:\nhello@luminaryfinancial.co\nLuminary Financial LLC\nA subsidiary of Apex Vital Holdings LLC\n3379 Peachtree Road NE, Suite 655\nAtlanta, GA 30326\n(770) 776-6650`,
           },
         ].map(section => (
           <div key={section.title} style={{ marginBottom: '2.5rem' }}>

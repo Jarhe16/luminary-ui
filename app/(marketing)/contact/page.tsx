@@ -1,3 +1,5 @@
+import { COMPANY } from '@/lib/company';
+
 export default function ContactPage() {
   return (
     <main style={{ background: 'var(--background)', color: 'var(--foreground)' }}>
@@ -21,7 +23,8 @@ export default function ContactPage() {
                 { label: 'General Inquiries', value: 'hello@luminaryfinancial.co' },
                 { label: 'Institutional & Bank Sales', value: 'hello@luminaryfinancial.co' },
                 { label: 'Support', value: 'hello@luminaryfinancial.co' },
-                { label: 'Headquarters', value: 'Atlanta, GA' },
+                { label: 'Phone', value: COMPANY.phone },
+                { label: 'Headquarters', value: `${COMPANY.addressLine1}, ${COMPANY.addressLine2}` },
               ].map(item => (
                 <div key={item.label}>
                   <div style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '4px' }}>
