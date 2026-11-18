@@ -4,6 +4,6 @@ export const COMPANY = {
   email: 'hello@luminaryfinancial.co',
   phone: '(770) 776-6650',
   phoneHref: 'tel:+17707766650',
-  addressLine1: '3379 Peachtree Road NE, Suite 655-O85',
+  addressLine1: '3379 Peachtree Road NE, Suite 655',
   addressLine2: 'Atlanta, GA 30326',
 };
