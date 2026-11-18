@@ -1,21 +1,43 @@
 // Decorative star with a light beam for the homepage hero (brand signature).
 // Pure SVG + CSS animation; hidden from assistive tech; respects reduced motion.
-// Glints scattered along the beam: [left %, top %, size px, delay s, duration s, desktopOnly]
-const SPARKLES: [number, number, number, number, number, boolean][] = [
-  [80, 15.6, 9, 0.0, 3.4, false],
-  [73, 14.2, 7, 1.6, 2.8, false],
-  [66, 13.6, 8, 0.8, 3.9, false],
-  [58, 12.4, 6, 2.4, 3.1, true],
-  [51, 11.3, 8, 0.4, 3.6, false],
-  [44, 10.6, 6, 2.0, 2.7, true],
-  [37, 9.9, 7, 1.2, 4.2, false],
-  [29, 9.0, 5, 2.8, 3.0, true],
-  [21, 8.3, 6, 0.6, 3.5, true],
-  [70, 20.6, 6, 1.9, 3.3, true],
-  [55, 21.8, 7, 0.2, 3.8, false],
-  [39, 23.1, 5, 2.6, 2.9, true],
-  [24, 24.2, 6, 1.4, 4.0, true],
+// A few larger glints near the star: [left %, top %, size px, delay s, duration s]
+const GLINTS: [number, number, number, number, number][] = [
+  [79, 15.5, 8, 0.0, 3.6],
+  [64, 13.3, 6, 1.7, 4.2],
+  [47, 11.0, 6, 0.9, 3.8],
+  [58, 21.4, 5, 2.5, 4.4],
 ];
+
+// Fine stardust inside the two beams. Deterministic so server and browser match.
+type Dust = { left: number; top: number; size: number; delay: number; dur: number; peak: number; mobile: boolean };
+function makeDust(): Dust[] {
+  let seed = 7;
+  const rand = () => {
+    seed = (seed * 16807) % 2147483647;
+    return (seed - 1) / 2147483646;
+  };
+  const out: Dust[] = [];
+  for (let i = 0; i < 70; i++) {
+    const soft = i % 3 === 2; // a third of the dust sits in the softer lower beam
+    const x = 86 - 84 * Math.pow(rand(), 1.5); // denser near the star
+    const t = x / 88;
+    const top = soft ? 20 - 3 * t : 1 + 16 * t;
+    const bottom = soft ? 30 - 13 * t : 13 + 4 * t;
+    const y = top + (bottom - top) * (0.2 + 0.6 * rand());
+    const near = t; // 0 far left .. 1 at the star
+    out.push({
+      left: +x.toFixed(2),
+      top: +y.toFixed(2),
+      size: +(1 + rand() * 1.8 + near * 0.6).toFixed(2),
+      delay: +(rand() * 5).toFixed(2),
+      dur: +(2.6 + rand() * 3).toFixed(2),
+      peak: +((soft ? 0.45 : 0.6) * (0.5 + 0.5 * near) + 0.2).toFixed(2),
+      mobile: i % 2 === 0,
+    });
+  }
+  return out;
+}
+const DUST = makeDust();
 
 export default function HeroStar() {
   return (
@@ -31,10 +53,25 @@ export default function HeroStar() {
         <polygon points="88,17 0,1 0,13" fill="url(#heroBeamGrad)" />
         <polygon className="hero-beam-soft" points="88,17 0,20 0,30" fill="url(#heroBeamGrad)" />
       </svg>
-      {SPARKLES.map(([left, top, size, delay, dur, desktopOnly], i) => (
+      {DUST.map((d, i) => (
         <span
-          key={i}
-          className={desktopOnly ? 'hero-sparkle hero-sparkle-desktop' : 'hero-sparkle'}
+          key={`d${i}`}
+          className={d.mobile ? 'hero-dust' : 'hero-dust hero-dust-desktop'}
+          style={{
+            left: `${d.left}%`,
+            top: `${d.top}%`,
+            width: d.size,
+            height: d.size,
+            animationDelay: `${d.delay}s`,
+            animationDuration: `${d.dur}s`,
+            ['--peak' as string]: d.peak,
+          } as React.CSSProperties}
+        />
+      ))}
+      {GLINTS.map(([left, top, size, delay, dur], i) => (
+        <span
+          key={`g${i}`}
+          className="hero-sparkle"
           style={{
             left: `${left}%`,
             top: `${top}%`,

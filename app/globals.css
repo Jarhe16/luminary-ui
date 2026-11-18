@@ -95,6 +95,22 @@ body {
 }
 .hero-sparkle::before { width: 260%; height: 1px; }
 .hero-sparkle::after { width: 1px; height: 260%; }
+/* Fine stardust inside the beam */
+.hero-dust {
+  position: absolute;
+  border-radius: 50%;
+  background: #f6e2a0;
+  box-shadow: 0 0 3px 0.5px rgba(241, 216, 142, 0.55);
+  opacity: 0.08;
+  transform: translate(-50%, -50%);
+  animation-name: hero-dust-twinkle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+@keyframes hero-dust-twinkle {
+  0%, 100% { opacity: 0.08; }
+  50% { opacity: var(--peak, 0.6); }
+}
 @keyframes hero-sparkle {
   0%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); }
   45% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
@@ -102,9 +118,10 @@ body {
 }
 @media (max-width: 640px) {
   .hero-beam { opacity: 0.5; animation: none; }
-  .hero-sparkle-desktop { display: none; }
+  .hero-dust-desktop { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-beam, .hero-star-shape, .hero-star-glow { animation: none; }
   .hero-sparkle { display: none; }
+  .hero-dust { animation: none; opacity: 0.35; }
 }
