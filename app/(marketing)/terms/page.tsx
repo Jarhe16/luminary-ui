@@ -22,7 +22,7 @@ export default function TermsPage() {
           },
           {
             title: '4. Intellectual Property',
-            body: `All Platform software, AI models, compliance rulesets, methodologies, processes, the "ICM Method," and related intellectual property are the exclusive property of Apex Vital Holdings LLC. Nothing in these Terms grants you any ownership interest in the Platform or its underlying technology. You may not reverse engineer, decompile, copy, reproduce, or otherwise attempt to derive the source code, ruleset, or methodology powering the Platform.`,
+            body: `All Platform software, AI models, compliance rulesets, methodologies, processes, and related intellectual property are the exclusive property of Apex Vital Holdings LLC. Nothing in these Terms grants you any ownership interest in the Platform or its underlying technology. You may not reverse engineer, decompile, copy, reproduce, or otherwise attempt to derive the source code, ruleset, or methodology powering the Platform.`,
           },
           {
             title: '5. Your Documents and Data',
