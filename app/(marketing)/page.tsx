@@ -74,18 +74,22 @@ export default function HomePage() {
         padding: '6rem 2rem 4rem',
         position: 'relative', overflow: 'hidden',
         textAlign: 'center',
+        // Navy sky like the ads: lighter around the star (upper right), darker to the left
+        background:
+          'radial-gradient(ellipse 65% 60% at 88% 17%, #22365e 0%, rgba(19, 37, 68, 0) 70%), ' +
+          'linear-gradient(100deg, #0b1424 0%, #0f1a2e 55%, #132544 100%)',
       }}>
         {/* Background grid */}
         <div style={{
           position: 'absolute', inset: 0, zIndex: 0,
           backgroundImage: 'linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px)',
           backgroundSize: '60px 60px',
-          opacity: 0.3,
+          opacity: 0.15,
         }} />
-        {/* Radial fade */}
+        {/* Fade into the page background at the bottom */}
         <div style={{
           position: 'absolute', inset: 0, zIndex: 1,
-          background: 'radial-gradient(ellipse 80% 60% at 50% 40%, transparent 30%, var(--background) 100%)',
+          background: 'linear-gradient(180deg, transparent 70%, var(--background) 100%)',
         }} />
         {/* Brand star + light beam */}
         <HeroStar />
