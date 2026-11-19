@@ -252,7 +252,7 @@ function PricingContent() {
         </div>
 
         <p style={{ textAlign: "center", marginTop: "2rem", fontSize: "0.8rem", color: "var(--muted)" }}>
-          14-day money-back guarantee on your first paid month. Cancel anytime.
+          14-day money-back guarantee: cancel within 14 days of your first payment (by 11:59 PM Eastern on day 14) for a full refund. After that, the month is non-refundable, and you can cancel anytime to stop future charges.
         </p>
         <p style={{ textAlign: "center", marginTop: "0.5rem", fontSize: "0.8rem", color: "var(--muted)" }}>
           Need just one report? Run a single audit for $199 from your dashboard, no subscription.

@@ -8,6 +8,12 @@ import sql from '@/lib/db';
 //   { tier: 'foundation' | ... | 'consultant100' }        → monthly subscription
 //   { product: 'single_report' }                           → one audit credit ($199)
 //   { product: 'extra_audit', quantity: n }                → n audit credits (Enterprise / Consultant 100 only)
+// Shown next to the required checkbox on Stripe's checkout page
+const TERMS_MESSAGE =
+  'I agree to the [Terms of Service](https://www.luminaryfinancial.co/terms), including the refund policy: ' +
+  'subscriptions can be refunded if cancelled within 14 days of the first payment; renewals, single reports ' +
+  'and additional audits are non-refundable.';
+
 export async function POST(req: NextRequest) {
   try {
     const session = await auth();
@@ -97,6 +103,12 @@ export async function POST(req: NextRequest) {
         payment_intent_data: {
           metadata: { userId: String(user.id), kind, credits: String(quantity) },
         },
+        consent_collection: { terms_of_service: 'required' },
+        custom_text: {
+          terms_of_service_acceptance: {
+            message: TERMS_MESSAGE,
+          },
+        },
       });
       return NextResponse.json({ url: checkoutSession.url });
     }
@@ -117,6 +129,12 @@ export async function POST(req: NextRequest) {
       metadata: { userId: String(user.id), tier },
       subscription_data: {
         metadata: { userId: String(user.id), tier },
+      },
+      consent_collection: { terms_of_service: 'required' },
+      custom_text: {
+        terms_of_service_acceptance: {
+          message: TERMS_MESSAGE,
+        },
       },
     });
 

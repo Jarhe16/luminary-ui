@@ -34,7 +34,7 @@ export default function TermsPage() {
           },
           {
             title: '7. Subscription and Payment',
-            body: `New accounts may use the Platform on a free trial, subject to the usage limits shown in your account. Continued access after the trial requires a paid subscription. Subscriptions are billed monthly unless an annual contract is in place. All fees are non-refundable except as provided in the 14-day money-back guarantee, which applies to a new subscriber's first paid month. You may cancel your subscription at any time through your account settings. Cancellation takes effect at the end of the current billing period.`,
+            body: `New accounts may use the Platform on a free trial, subject to the usage limits shown in your account. Continued access after the trial requires a paid subscription. Subscriptions are billed monthly. \n\nRefunds. If you cancel within 14 days of your first paid subscription payment (by 11:59 PM Eastern Time on the 14th day), we will refund that payment in full. Requests after that period, renewal payments, and one-time purchases (single reports and additional audits) are non-refundable. Cancelling stops future charges. After you cancel, your plan stays active until the end of the billing period you paid for. During that time you can run audits up to your plan's allowance for that period.\n\nTo cancel or request a refund, email hello@luminaryfinancial.co from the email address on your account.`,
           },
           {
             title: '8. Limitation of Liability',
