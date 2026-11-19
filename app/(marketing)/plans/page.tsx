@@ -179,7 +179,7 @@ export default function PricingPage() {
           <PlanTabs firmTiers={TIERS} consultantTiers={CONSULTANT_TIERS} />
 
           <p style={{ textAlign: 'center', marginTop: '2rem', fontSize: '0.85rem', color: 'var(--muted)' }}>
-            Every plan starts with a free trial, no credit card required · Annual pricing available at a discount
+            Every plan starts with a free trial, no credit card required
           </p>
           <p style={{ textAlign: 'center', marginTop: '0.75rem', fontSize: '0.85rem', color: 'var(--muted)', maxWidth: '760px', marginLeft: 'auto', marginRight: 'auto' }}>
             14-day money-back guarantee: cancel within 14 days of your first payment (by 11:59 PM Eastern on day 14) for a full refund. After that, the month is non-refundable, and you can cancel anytime to stop future charges.
