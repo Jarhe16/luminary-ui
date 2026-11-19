@@ -119,7 +119,6 @@ const ENTERPRISE = {
     'API integration (on our roadmap)',
     'Dedicated implementation and onboarding',
     'Security review support',
-    'Annual contract with volume discounts',
   ],
 };
 
@@ -150,7 +149,7 @@ const FAQ = [
   },
   {
     q: 'Can I cancel at any time?',
-    a: 'Yes. All plans are month-to-month and can be cancelled at any time. Annual contracts are also available at a discount — contact us for details.',
+    a: 'Yes. All plans are month-to-month and can be cancelled at any time.',
   },
 ];
 
