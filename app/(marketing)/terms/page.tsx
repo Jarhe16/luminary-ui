@@ -26,7 +26,7 @@ export default function TermsPage() {
           },
           {
             title: '5. Your Documents and Data',
-            body: `You retain ownership of all documents you upload to the Platform. By uploading documents, you grant the Company a limited, non-exclusive license to process those documents solely for the purpose of providing the audit service. Documents are processed and not permanently stored after analysis is complete. The Company will not use your documents to train AI models or share them with third parties, except as required by law.`,
+            body: `You retain ownership of all documents you upload to the Platform. By uploading documents, you grant the Company a limited, non-exclusive license to process those documents solely for the purpose of providing the audit service. Documents are processed and not permanently stored after analysis is complete. The Company will not use your documents to train AI models or share them with third parties, except service providers that process them on our behalf to provide the service (as listed in our Privacy Policy), or as required by law.`,
           },
           {
             title: '6. Acceptable Use',
