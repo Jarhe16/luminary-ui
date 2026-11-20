@@ -1,50 +1,12 @@
 import Link from 'next/link';
 import { COMPANY } from '@/lib/company';
+import MarketingNav from '@/components/MarketingNav';
 import BrandLogo from '@/components/BrandLogo';
 
 export default function MarketingLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <nav style={{
-        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
-        borderBottom: '1px solid var(--border)',
-        background: 'rgba(13,15,26,0.92)',
-        backdropFilter: 'blur(12px)',
-        padding: '0 2rem',
-        height: '64px',
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-      }}>
-        <Link href="/" style={{ textDecoration: 'none' }}>
-          <BrandLogo />
-        </Link>
-
-        <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
-          <Link href="/how-it-works" style={{ fontSize: '0.85rem', color: 'var(--muted)', textDecoration: 'none', fontWeight: 500 }}>
-            How It Works
-          </Link>
-          <Link href="/plans" style={{ fontSize: '0.85rem', color: 'var(--muted)', textDecoration: 'none', fontWeight: 500 }}>
-            Pricing
-          </Link>
-          <Link href="/about" style={{ fontSize: '0.85rem', color: 'var(--muted)', textDecoration: 'none', fontWeight: 500 }}>
-            About
-          </Link>
-          <Link href="/contact" style={{ fontSize: '0.85rem', color: 'var(--muted)', textDecoration: 'none', fontWeight: 500 }}>
-            Contact
-          </Link>
-          <Link href="/auth/login" style={{
-            fontSize: '0.85rem', color: 'var(--muted)', textDecoration: 'none',
-            border: '1px solid var(--border)', borderRadius: '6px', padding: '6px 16px',
-          }}>
-            Sign In
-          </Link>
-          <Link href="/auth/register" style={{
-            fontSize: '0.85rem', fontWeight: 700, color: '#0d0f1a', textDecoration: 'none',
-            background: 'var(--accent)', borderRadius: '6px', padding: '6px 18px',
-          }}>
-            Get Started
-          </Link>
-        </div>
-      </nav>
+      <MarketingNav />
 
       <div style={{ paddingTop: '64px' }}>
         {children}
@@ -56,7 +18,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
         padding: '4rem 2rem 2rem',
       }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: '3rem', marginBottom: '3rem' }}>
+          <div className="rgrid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: '3rem', marginBottom: '3rem' }}>
             <div>
               <div style={{ marginBottom: '0.75rem' }}>
                 <BrandLogo size="md" />

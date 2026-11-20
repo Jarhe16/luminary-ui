@@ -125,3 +125,30 @@ body {
   .hero-sparkle { display: none; }
   .hero-dust { animation: none; opacity: 0.35; }
 }
+
+/* Marketing top navigation: full link row on wide screens, menu button on narrow ones */
+.mnav-compact { display: none; }
+.mnav-logo { flex-shrink: 0; }
+.mnav-menu { display: none; }
+@media (max-width: 900px) {
+  .mnav-links { display: none !important; }
+  .mnav-compact { display: flex !important; }
+  .mnav-menu { display: flex !important; }
+  .mnav-bar { padding: 0 1rem !important; }
+  .mnav-logo { min-width: 0; overflow: hidden; flex-shrink: 1; }
+  .mnav-logo svg { width: 34px; height: 34px; }
+  .mnav-logo span span span:first-child { font-size: 30px !important; }
+  .mnav-logo span span span:last-child { font-size: 8px !important; }
+  .mnav-compact { flex-shrink: 0; }
+}
+.mnav-menu-cta { display: none !important; }
+@media (max-width: 420px) {
+  .mnav-compact .mnav-cta { display: none !important; }
+  .mnav-menu-cta { display: block !important; }
+}
+
+/* Marketing pages: stack multi-column grids on phones */
+@media (max-width: 768px) {
+  .rgrid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+  .rgrid-stats { grid-template-columns: 1fr 1fr !important; gap: 1.5rem !important; padding: 2rem 1rem !important; }
+}
