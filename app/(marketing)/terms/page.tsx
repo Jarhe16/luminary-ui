@@ -1,5 +1,5 @@
 export default function TermsPage() {
-  const effective = 'July 31, 2026';
+  const effective = 'November 20, 2026';
   return (
     <main style={{ background: 'var(--background)', color: 'var(--foreground)' }}>
       <section style={{ maxWidth: '760px', margin: '0 auto', padding: '6rem 2rem' }}>
@@ -22,15 +22,15 @@ export default function TermsPage() {
           },
           {
             title: '4. Intellectual Property',
-            body: `All Platform software, AI models, compliance rulesets, methodologies, processes, and related intellectual property are the exclusive property of Apex Vital Holdings LLC. Nothing in these Terms grants you any ownership interest in the Platform or its underlying technology. You may not reverse engineer, decompile, copy, reproduce, or otherwise attempt to derive the source code, ruleset, or methodology powering the Platform.`,
+            body: `The Platform, including its software, prompts, compliance rulesets, rule logic, methodologies, processes, report formats, and related intellectual property, is owned by Luminary Financial LLC or its licensors and is protected by intellectual property and trade secret laws. Subject to these Terms, the Company grants you a limited, non-exclusive, non-transferable, revocable right to use the Platform for your own internal compliance review or, if you are a compliance consultant, for compliance review of your clients' documents, while your account is in good standing. Nothing in these Terms grants you any ownership interest in the Platform or its underlying technology.\n\nYou may use the findings reports generated for your documents for your own or your clients' compliance purposes. You may not use the Platform, its findings, or any information derived from them to compile, reconstruct, or reproduce the Company's compliance rulesets, or to build, train, improve, or benchmark a competing product or service.\n\nYou may not reverse engineer, decompile, copy, reproduce, or otherwise attempt to derive the source code, prompts, ruleset, or methodology powering the Platform.\n\nFeedback. If you send us suggestions, ideas, or other feedback about the Platform, you grant the Company a perpetual, irrevocable, royalty-free right to use it for any purpose, without any obligation to you.`,
           },
           {
             title: '5. Your Documents and Data',
-            body: `You retain ownership of all documents you upload to the Platform. By uploading documents, you grant the Company a limited, non-exclusive license to process those documents solely for the purpose of providing the audit service. Documents are processed and not permanently stored after analysis is complete. The Company will not use your documents to train AI models or share them with third parties, except as required by law.`,
+            body: `You retain ownership of all documents you upload to the Platform. By uploading documents, you grant the Company a limited, non-exclusive license to process those documents solely for the purpose of providing the audit service. Documents are processed and not permanently stored after analysis is complete. The Company will not use your documents to train AI models or share them with third parties, except service providers that process them on our behalf to provide the service (as listed in our Privacy Policy), or as required by law.`,
           },
           {
             title: '6. Acceptable Use',
-            body: `You agree to use the Platform only for lawful compliance review purposes. You may not use the Platform to upload documents you do not have the right to submit, to attempt to circumvent security measures, to engage in any fraudulent activity, or in any manner that violates applicable law. The Company reserves the right to terminate access for any violation of these Terms.`,
+            body: `You agree to use the Platform only for lawful compliance review purposes. You may not use the Platform to upload documents you do not have the right to submit, to attempt to circumvent security measures, to engage in any fraudulent activity, or in any manner that violates applicable law. \n\nYou also may not: (a) access the Platform through bots, scrapers, scripts, or other automated means, or extract findings in bulk, except through features the Company provides; (b) share your login credentials or allow anyone outside your organization to use your account; (c) sell, resell, rent, sublicense, or provide access to the Platform as a service to third parties, except that compliance consultants may run audits for their own clients and share the resulting reports with them; or (d) access the Platform to monitor its availability, performance, or functionality for competitive purposes.\n\nThe Company reserves the right to suspend or terminate access for any violation of these Terms.`,
           },
           {
             title: '7. Subscription and Payment',
