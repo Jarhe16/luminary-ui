@@ -141,7 +141,7 @@ const FAQ = [
   },
   {
     q: 'Can banks and trust departments use Luminary?',
-    a: 'Yes. Banks with RIA subsidiaries, trust departments, and private banking divisions with SEC filing obligations can use Luminary. Contact us for institution and bank-specific pricing and custom ruleset configuration.',
+    a: 'Yes. Banks with RIA subsidiaries, trust departments, and private banking divisions with SEC filing obligations can use Luminary. Contact us for institution and bank-specific pricing. Custom rule configuration is available on request, scoped and quoted separately.',
   },
   {
     q: 'Is my document data secure?',

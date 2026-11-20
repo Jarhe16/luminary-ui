@@ -29,9 +29,6 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
               <p style={{ fontSize: '0.85rem', color: 'var(--muted)', lineHeight: 1.6, maxWidth: '280px' }}>
                 AI-powered compliance auditing for Registered Investment Advisers and financial institutions.
               </p>
-              <div style={{ marginTop: '1rem', fontSize: '0.8rem', color: 'var(--muted)' }}>
-                A subsidiary of <span style={{ color: 'var(--foreground)' }}>Apex Vital Holdings LLC</span>
-              </div>
             </div>
 
             <div>
@@ -61,14 +58,14 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
               ))}
               <div style={{ marginTop: '1rem', fontSize: '0.8rem', color: 'var(--muted)', lineHeight: 1.7 }}>
                 <a href={`mailto:${COMPANY.email}`} style={{ color: 'var(--muted)', textDecoration: 'none' }}>{COMPANY.email}</a><br />
-                <a href={COMPANY.phoneHref} style={{ color: 'var(--muted)', textDecoration: 'none' }}>{COMPANY.phone}</a>
+                <a href={`mailto:${COMPANY.supportEmail}`} style={{ color: 'var(--muted)', textDecoration: 'none' }}>{COMPANY.supportEmail}</a>
               </div>
             </div>
           </div>
 
           <div style={{ borderTop: '1px solid var(--border)', paddingTop: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem' }}>
             <div style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>
-              © {new Date().getFullYear()} Luminary Financial LLC, a subsidiary of Apex Vital Holdings LLC. All rights reserved.
+              © {new Date().getFullYear()} Luminary Financial LLC. All rights reserved.
             </div>
             <div style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>
               {COMPANY.addressLine1}, {COMPANY.addressLine2}

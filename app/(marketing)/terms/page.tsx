@@ -10,7 +10,7 @@ export default function TermsPage() {
         {[
           {
             title: '1. Acceptance of Terms',
-            body: `By accessing or using the Luminary Financial Compliance Intelligence Platform ("Platform"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, do not use the Platform. These Terms constitute a legally binding agreement between you and Luminary Financial LLC, a subsidiary of Apex Vital Holdings LLC ("Company," "we," "us," or "our").`,
+            body: `By accessing or using the Luminary Financial Compliance Intelligence Platform ("Platform"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, do not use the Platform. These Terms constitute a legally binding agreement between you and Luminary Financial LLC ("Company," "we," "us," or "our").`,
           },
           {
             title: '2. Description of Service',
@@ -54,7 +54,7 @@ export default function TermsPage() {
           },
           {
             title: '12. Contact',
-            body: `Questions about these Terms may be directed to: hello@luminaryfinancial.co\nLuminary Financial LLC\nA subsidiary of Apex Vital Holdings LLC\n3379 Peachtree Road NE, Suite 655\nAtlanta, GA 30326\n(770) 776-6650`,
+            body: `Questions about these Terms may be directed to: hello@luminaryfinancial.co\nLuminary Financial LLC\n3379 Peachtree Road NE, Suite 655\nAtlanta, GA 30326`,
           },
         ].map(section => (
           <div key={section.title} style={{ marginBottom: '2.5rem' }}>
