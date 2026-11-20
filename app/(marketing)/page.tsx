@@ -147,7 +147,7 @@ export default function HomePage() {
 
       {/* Stats bar */}
       <section style={{ borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', background: 'var(--surface)' }}>
-        <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '2.5rem 2rem', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem' }}>
+        <div className="rgrid-stats" style={{ maxWidth: '1100px', margin: '0 auto', padding: '2.5rem 2rem', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem' }}>
           {STATS.map(s => (
             <div key={s.value} style={{ textAlign: 'center' }}>
               <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--accent)', marginBottom: '0.25rem' }}>{s.value}</div>
@@ -159,7 +159,7 @@ export default function HomePage() {
 
       {/* Problem / Solution */}
       <section style={{ padding: '6rem 2rem', maxWidth: '1100px', margin: '0 auto' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+        <div className="rgrid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
           <div>
             <div style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--accent)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1rem' }}>
               The Problem
@@ -218,7 +218,7 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }}>
+          <div className="rgrid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }}>
             {FEATURES.map(f => (
               <div key={f.title} style={{
                 background: 'var(--surface-2)', border: '1px solid var(--border)',
@@ -248,7 +248,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }}>
+          <div className="rgrid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }}>
             {USE_CASES.map(uc => (
               <div key={uc.audience} style={{
                 background: 'var(--surface)', border: '1px solid var(--border)',
