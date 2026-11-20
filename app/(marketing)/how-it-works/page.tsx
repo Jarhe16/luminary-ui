@@ -19,7 +19,7 @@ const STEPS = [
   {
     step: '04',
     title: 'Export Your Report',
-    desc: 'Download a professionally formatted PDF audit report — branded with Luminary Financial — that documents every finding with full citations. Keep it in your compliance file, share it with counsel, or deliver it to clients.',
+    desc: 'Download a professionally formatted PDF audit report that documents every finding with full citations. Keep it in your compliance file, share it with counsel, or deliver it to clients.',
   },
 ];
 
@@ -110,7 +110,7 @@ export default function HowItWorksPage() {
               borderRadius: '8px', padding: '1.25rem 1.5rem', textAlign: 'center',
             }}>
               <span style={{ fontSize: '0.85rem', color: 'var(--muted)' }}>
-                Additional rules added continuously · Institutional clients receive custom ruleset configuration
+                Additional rules added continuously · Custom rule configuration available for institutional clients on request
               </span>
             </div>
           </div>
