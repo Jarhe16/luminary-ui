@@ -42,7 +42,7 @@ export default function ContactPage() {
                 For Banks & Institutions
               </div>
               <p style={{ fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.6, margin: 0 }}>
-                If you represent a bank, trust department, or financial institution, choose “Institutional / Bank Inquiry” in the form. We’ll follow up in writing with options for your team, including a pilot, multi-user access, and custom rule configuration where needed (scoped and quoted separately). API integration is on our roadmap.
+                If you represent a bank, trust department, or financial institution, choose “Institutional / Bank Inquiry” in the form. We’ll follow up in writing with options for your team, including a pilot and custom rule configuration where needed (scoped and quoted separately). API integration is on our roadmap.
               </p>
             </div>
           </div>
