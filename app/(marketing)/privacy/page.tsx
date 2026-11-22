@@ -10,7 +10,7 @@ export default function PrivacyPage() {
         {[
           {
             title: '1. Introduction',
-            body: `Luminary Financial LLC, a subsidiary of Apex Vital Holdings LLC ("Company," "we," "us," or "our"), is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use the Luminary Financial Compliance Intelligence Platform ("Platform").`,
+            body: `Luminary Financial LLC ("Company," "we," "us," or "our"), is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use the Luminary Financial Compliance Intelligence Platform ("Platform").`,
           },
           {
             title: '2. Information We Collect',
@@ -54,7 +54,7 @@ export default function PrivacyPage() {
           },
           {
             title: '12. Contact',
-            body: `Privacy questions or requests may be directed to:\nhello@luminaryfinancial.co\nLuminary Financial LLC\nA subsidiary of Apex Vital Holdings LLC\n3379 Peachtree Road NE, Suite 655\nAtlanta, GA 30326\n(770) 776-6650`,
+            body: `Privacy questions or requests may be directed to:\nhello@luminaryfinancial.co\nLuminary Financial LLC\n3379 Peachtree Road NE, Suite 655\nAtlanta, GA 30326`,
           },
         ].map(section => (
           <div key={section.title} style={{ marginBottom: '2.5rem' }}>

@@ -1,4 +1,5 @@
 import { COMPANY } from '@/lib/company';
+import ContactForm from '@/components/ContactForm';
 
 export default function ContactPage() {
   return (
@@ -20,10 +21,8 @@ export default function ContactPage() {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               {[
-                { label: 'General Inquiries', value: 'hello@luminaryfinancial.co' },
-                { label: 'Institutional & Bank Sales', value: 'hello@luminaryfinancial.co' },
-                { label: 'Support', value: 'hello@luminaryfinancial.co' },
-                { label: 'Phone', value: COMPANY.phone },
+                { label: 'General & Sales Inquiries', value: COMPANY.email },
+                { label: 'Customer Support', value: COMPANY.supportEmail },
                 { label: 'Headquarters', value: `${COMPANY.addressLine1}, ${COMPANY.addressLine2}` },
               ].map(item => (
                 <div key={item.label}>
@@ -43,7 +42,7 @@ export default function ContactPage() {
                 For Banks & Institutions
               </div>
               <p style={{ fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.6, margin: 0 }}>
-                If you represent a bank, trust department, or financial institution with complex compliance needs, reach out directly. We build custom arrangements including bank-specific rulesets, security review support, and dedicated onboarding. API integration is on our roadmap.
+                If you represent a bank, trust department, or financial institution, choose “Institutional / Bank Inquiry” in the form. We’ll follow up in writing with options for your team, including a pilot, multi-user access, and custom rule configuration where needed (scoped and quoted separately). API integration is on our roadmap.
               </p>
             </div>
           </div>
@@ -57,95 +56,7 @@ export default function ContactPage() {
               We respond to all inquiries within one business day.
             </p>
 
-            <form action={`mailto:hello@luminaryfinancial.co`} method="get" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-              <div>
-                <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '6px' }}>
-                  Full Name
-                </label>
-                <input
-                  type="text" name="name" required placeholder="Jane Smith"
-                  style={{
-                    width: '100%', padding: '10px 12px',
-                    background: 'var(--surface-2)', border: '1px solid var(--border)',
-                    borderRadius: '6px', color: 'var(--foreground)', fontSize: '0.9rem',
-                    outline: 'none', boxSizing: 'border-box',
-                  }}
-                />
-              </div>
-              <div>
-                <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '6px' }}>
-                  Email
-                </label>
-                <input
-                  type="email" name="email" required placeholder="jane@yourfirm.com"
-                  style={{
-                    width: '100%', padding: '10px 12px',
-                    background: 'var(--surface-2)', border: '1px solid var(--border)',
-                    borderRadius: '6px', color: 'var(--foreground)', fontSize: '0.9rem',
-                    outline: 'none', boxSizing: 'border-box',
-                  }}
-                />
-              </div>
-              <div>
-                <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '6px' }}>
-                  Firm / Institution
-                </label>
-                <input
-                  type="text" name="firm" placeholder="ABC Advisers LLC"
-                  style={{
-                    width: '100%', padding: '10px 12px',
-                    background: 'var(--surface-2)', border: '1px solid var(--border)',
-                    borderRadius: '6px', color: 'var(--foreground)', fontSize: '0.9rem',
-                    outline: 'none', boxSizing: 'border-box',
-                  }}
-                />
-              </div>
-              <div>
-                <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '6px' }}>
-                  Inquiry Type
-                </label>
-                <select
-                  name="type"
-                  style={{
-                    width: '100%', padding: '10px 12px',
-                    background: 'var(--surface-2)', border: '1px solid var(--border)',
-                    borderRadius: '6px', color: 'var(--foreground)', fontSize: '0.9rem',
-                    outline: 'none', cursor: 'pointer', boxSizing: 'border-box',
-                  }}
-                >
-                  <option>General Inquiry</option>
-                  <option>Institutional / Bank Sales</option>
-                  <option>Pricing Question</option>
-                  <option>Technical Support</option>
-                  <option>Partnership</option>
-                </select>
-              </div>
-              <div>
-                <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '6px' }}>
-                  Message
-                </label>
-                <textarea
-                  name="body" required rows={5} placeholder="Tell us about your firm and what you need..."
-                  style={{
-                    width: '100%', padding: '10px 12px',
-                    background: 'var(--surface-2)', border: '1px solid var(--border)',
-                    borderRadius: '6px', color: 'var(--foreground)', fontSize: '0.9rem',
-                    outline: 'none', resize: 'vertical', boxSizing: 'border-box',
-                    fontFamily: 'inherit',
-                  }}
-                />
-              </div>
-              <button
-                type="submit"
-                style={{
-                  padding: '12px', background: 'var(--accent)', color: '#0d0f1a',
-                  border: 'none', borderRadius: '6px', fontWeight: 800,
-                  fontSize: '0.9rem', cursor: 'pointer',
-                }}
-              >
-                Send Message
-              </button>
-            </form>
+            <ContactForm />
           </div>
 
         </div>

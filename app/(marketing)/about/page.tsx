@@ -43,9 +43,8 @@ export default function AboutPage() {
               { label: 'Founded', value: '2026' },
               { label: 'Headquarters', value: `${COMPANY.addressLine1}, ${COMPANY.addressLine2}` },
               { label: 'Legal Entity', value: 'Luminary Financial LLC' },
-              { label: 'Parent Company', value: 'Apex Vital Holdings LLC' },
               { label: 'Industry', value: 'Compliance Technology (RegTech)' },
-              { label: 'Contact', value: `${COMPANY.email} · ${COMPANY.phone}` },
+              { label: 'Contact', value: COMPANY.email },
             ].map(item => (
               <div key={item.label} style={{
                 display: 'grid', gridTemplateColumns: '140px 1fr',

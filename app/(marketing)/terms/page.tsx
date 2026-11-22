@@ -10,7 +10,7 @@ export default function TermsPage() {
         {[
           {
             title: '1. Acceptance of Terms',
-            body: `By accessing or using the Luminary Financial Compliance Intelligence Platform ("Platform"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, do not use the Platform. These Terms constitute a legally binding agreement between you and Luminary Financial LLC, a subsidiary of Apex Vital Holdings LLC ("Company," "we," "us," or "our").`,
+            body: `By accessing or using the Luminary Financial Compliance Intelligence Platform ("Platform"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, do not use the Platform. These Terms constitute a legally binding agreement between you and Luminary Financial LLC ("Company," "we," "us," or "our").`,
           },
           {
             title: '2. Description of Service',
@@ -34,7 +34,7 @@ export default function TermsPage() {
           },
           {
             title: '7. Subscription and Payment',
-            body: `New accounts may use the Platform on a free trial, subject to the usage limits shown in your account. Continued access after the trial requires a paid subscription. Subscriptions are billed monthly. \n\nRefunds. If you cancel within 14 days of your first paid subscription payment (by 11:59 PM Eastern Time on the 14th day), we will refund that payment in full. Requests after that period, renewal payments, and one-time purchases (single reports and additional audits) are non-refundable. Cancelling stops future charges. After you cancel, your plan stays active until the end of the billing period you paid for. During that time you can run audits up to your plan's allowance for that period.\n\nTo cancel or request a refund, email hello@luminaryfinancial.co from the email address on your account.`,
+            body: `New accounts may use the Platform on a free trial, subject to the usage limits shown in your account. Continued access after the trial requires a paid subscription. Subscriptions are billed monthly. \n\nRefunds. If you cancel within 14 days of your first paid subscription payment (by 11:59 PM Eastern Time on the 14th day), we will refund that payment in full. Requests after that period, renewal payments, and one-time purchases (single reports and additional audits) are non-refundable. Cancelling stops future charges. After you cancel, your plan stays active until the end of the billing period you paid for. During that time you can run audits up to your plan's allowance for that period.\n\nTo cancel or request a refund, email support@luminaryfinancial.co from the email address on your account.`,
           },
           {
             title: '8. Limitation of Liability',
@@ -54,7 +54,7 @@ export default function TermsPage() {
           },
           {
             title: '12. Contact',
-            body: `Questions about these Terms may be directed to: hello@luminaryfinancial.co\nLuminary Financial LLC\nA subsidiary of Apex Vital Holdings LLC\n3379 Peachtree Road NE, Suite 655\nAtlanta, GA 30326\n(770) 776-6650`,
+            body: `Questions about these Terms may be directed to: hello@luminaryfinancial.co\nLuminary Financial LLC\n3379 Peachtree Road NE, Suite 655\nAtlanta, GA 30326`,
           },
         ].map(section => (
           <div key={section.title} style={{ marginBottom: '2.5rem' }}>
