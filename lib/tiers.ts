@@ -14,7 +14,7 @@ export const TIER_LIMITS: Record<Tier, number | null> = {
   inactive:      0,            // cancelled subscription / no active plan
   foundation:    10,
   accelerator:   50,
-  pinnacle:      245,
+  pinnacle:      125,
   consultant25:  25,
   consultant50:  50,
   consultant100: 100,
@@ -60,11 +60,11 @@ export const SUBSCRIBABLE_TIERS: Tier[] = [
 ];
 
 // One-time purchases
-export const SINGLE_REPORT_PRICE = 199; // any account, one audit credit
+export const SINGLE_REPORT_PRICE = 149; // any account, one audit credit
 
 // Extra audits (one credit each) are sold only on the top plans
 export const EXTRA_AUDIT_PRICE: Partial<Record<Tier, number>> = {
-  pinnacle:      85,
+  pinnacle:      50,
   consultant100: 90,
 };
 export const EXTRA_AUDIT_MAX_QTY = 100;

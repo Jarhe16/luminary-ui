@@ -46,8 +46,8 @@ const TIERS = [
     period: '/month',
     desc: 'For large RIA firms and institutional advisers with high-volume, in-house compliance review.',
     features: [
-      '245 document audits per month',
-      'Additional audits $85 each',
+      '125 document audits per month',
+      'Additional audits $50 each',
       'Everything in Accelerator',
       'Dedicated support contact',
       'Custom rule set configuration',
@@ -129,7 +129,7 @@ const FAQ = [
   },
   {
     q: 'What happens if I need more audits in a month?',
-    a: 'Enterprise and Consultant 100 customers can buy additional audits from their dashboard ($85 each on Enterprise, $90 each on Consultant 100). Other plans can upgrade at any time, and consultants can buy single reports for $199 each.',
+    a: 'Enterprise and Consultant 100 customers can buy additional audits from their dashboard ($50 each on Enterprise, $90 each on Consultant 100). Other plans can upgrade at any time, and consultants can buy single reports for $149 each.',
   },
   {
     q: 'What types of documents can Luminary audit?',

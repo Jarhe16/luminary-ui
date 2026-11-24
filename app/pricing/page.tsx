@@ -33,7 +33,7 @@ const TIERS = [
     price:       "$4,500",
     period:      "/month",
     description: "High-volume compliance coverage for large RIA firms and institutions.",
-    features:    ["245 audits per month", "Additional audits $85 each", "PDF export", "Audit history", "Dedicated support contact", "Custom rule sets"],
+    features:    ["125 audits per month", "Additional audits $50 each", "PDF export", "Audit history", "Dedicated support contact", "Custom rule sets"],
     color:       "#c9a84c",
     highlight:   false,
   },
@@ -255,7 +255,7 @@ function PricingContent() {
           14-day money-back guarantee: cancel within 14 days of your first payment (by 11:59 PM Eastern on day 14) for a full refund. After that, the month is non-refundable, and you can cancel anytime to stop future charges.
         </p>
         <p style={{ textAlign: "center", marginTop: "0.5rem", fontSize: "0.8rem", color: "var(--muted)" }}>
-          Need just one report? Run a single audit for $199 from your dashboard, no subscription.
+          Need just one report? Run a single audit for $149 from your dashboard, no subscription.
         </p>
       </div>
     </main>
