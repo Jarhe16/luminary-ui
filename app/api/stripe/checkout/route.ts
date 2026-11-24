@@ -6,7 +6,7 @@ import sql from '@/lib/db';
 
 // POST body, one of:
 //   { tier: 'foundation' | ... | 'consultant100' }        → monthly subscription
-//   { product: 'single_report' }                           → one audit credit ($199)
+//   { product: 'single_report' }                           → one audit credit ($149)
 //   { product: 'extra_audit', quantity: n }                → n audit credits (Enterprise / Consultant 100 only)
 // Shown next to the required checkbox on Stripe's checkout page
 const TERMS_MESSAGE =
