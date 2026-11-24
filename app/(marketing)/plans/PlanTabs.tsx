@@ -97,7 +97,7 @@ export default function PlanTabs({ firmTiers, consultantTiers }: { firmTiers: Pl
         ))}
       </div>
 
-      <p style={{ textAlign: 'center', marginTop: '1.75rem', fontSize: '0.95rem', color: 'var(--muted)' }}>
+      <p style={{ textAlign: 'center', marginTop: '1.75rem', fontSize: '0.85rem', color: 'var(--muted)' }}>
         Just need one report? <strong style={{ color: 'var(--foreground)' }}>$149 per report</strong>, no subscription.
       </p>
     </>
