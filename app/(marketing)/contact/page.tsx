@@ -34,6 +34,10 @@ export default function ContactPage() {
               ))}
             </div>
 
+            <p style={{ fontSize: '0.8rem', color: 'var(--muted)', marginTop: '1.25rem', marginBottom: 0 }}>
+              Main office: <a href={COMPANY.phoneHref} style={{ color: 'var(--muted)' }}>{COMPANY.phone}</a>
+            </p>
+
             <div style={{
               marginTop: '3rem', background: 'var(--surface)', border: '1px solid var(--border)',
               borderLeft: '3px solid var(--accent)', borderRadius: '8px', padding: '1.25rem 1.5rem',
