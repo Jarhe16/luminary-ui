@@ -1,0 +1,210 @@
+/* Arayus homepage (preview). Premium look: navy, gold, blue glow behind the star. */
+
+.page {
+  min-height: 100vh;
+  background: #0b0d17;
+  color: #e8eaf0;
+  font-family: var(--font-inter), Inter, system-ui, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.page a { color: #b9bfd0; text-decoration: none; }
+.page a:hover { color: #E6C873; }
+
+.serif { font-family: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif; }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 760px;
+  background: radial-gradient(ellipse 1150px 760px at 87% 30%, #2f4380 0%, #1f2c5c 28%, #141c3d 55%, #0d1124 78%, #0b0d17 100%);
+}
+
+.rays {
+  position: absolute;
+  left: 0;
+  top: 40px;
+  width: 100%;
+  height: 720px;
+  pointer-events: none;
+}
+
+.nav {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 26px 72px;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.28);
+}
+
+.brand { display: flex; align-items: center; gap: 12px; }
+
+.wordmark {
+  font-weight: 600;
+  font-size: 36px;
+  letter-spacing: 0.02em;
+  color: #e8eaf0;
+  line-height: 1;
+}
+.wordmark .ray { color: #E6C873; }
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+}
+
+.navCta {
+  color: #E6C873 !important;
+  border: 1px solid #c9a84c;
+  border-radius: 2px;
+  padding: 11px 20px;
+  white-space: nowrap;
+}
+
+.heroBody {
+  position: relative;
+  z-index: 1;
+  padding: 110px 72px 96px;
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  color: #E6C873;
+}
+.eyebrowRule { display: block; width: 40px; height: 1px; background: #c9a84c; flex-shrink: 0; }
+
+.h1 {
+  margin: 0;
+  font-weight: 500;
+  font-size: clamp(56px, 9vw, 104px);
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+  color: #f1f2f6;
+}
+.h1 em { font-style: italic; color: #E6C873; }
+
+.lede { margin: 0; font-size: 19px; line-height: 1.65; color: #c2c7d6; max-width: 620px; }
+
+.ctaRow { display: flex; align-items: center; flex-wrap: wrap; gap: 28px; margin-top: 10px; }
+
+.ctaPrimary {
+  background: #c9a84c;
+  color: #0b0d17 !important;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  border-radius: 2px;
+  padding: 17px 30px;
+}
+.ctaPrimary:hover { background: #E6C873; }
+
+.ctaSecondary {
+  color: #e8eaf0 !important;
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  border-bottom: 1px solid #c9a84c;
+  padding-bottom: 6px;
+}
+
+/* ---------- Star animation ---------- */
+@keyframes starPulse {
+  0%, 100% { opacity: 1; transform: scale(1); filter: drop-shadow(0 0 6px rgba(230, 200, 115, 0.55)); }
+  50% { opacity: 0.85; transform: scale(1.12); filter: drop-shadow(0 0 18px rgba(243, 221, 149, 0.95)); }
+}
+@keyframes twinkle { 0%, 100% { opacity: 0.25; } 50% { opacity: 1; } }
+
+.mainStar { transform-box: fill-box; transform-origin: center; animation: starPulse 3.2s ease-in-out infinite; }
+.twinkle { transform-box: fill-box; transform-origin: center; animation: twinkle 3.6s ease-in-out infinite; }
+.twinkleB { animation-delay: 1.2s; animation-duration: 4.2s; }
+.twinkleC { animation-delay: 2.1s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mainStar, .twinkle { animation: none; }
+}
+
+/* ---------- Who it's for ---------- */
+.who {
+  background: #0d1124;
+  border-top: 1px solid rgba(201, 168, 76, 0.28);
+  padding: 72px 72px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+}
+
+.sectionLabel { font-size: 12px; font-weight: 600; letter-spacing: 0.24em; color: #E6C873; }
+
+.h2 { margin: 12px 0 0; font-weight: 500; font-size: clamp(34px, 4.5vw, 48px); line-height: 1.05; color: #f1f2f6; }
+
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; }
+
+.card { display: flex; flex-direction: column; gap: 14px; border-top: 1px solid #c9a84c; padding-top: 24px; }
+.cardTag { font-size: 12px; font-weight: 600; letter-spacing: 0.2em; color: #E6C873; }
+.cardTitle { font-weight: 600; font-size: 28px; color: #f1f2f6; line-height: 1.15; }
+.cardText { margin: 0; font-size: 16px; line-height: 1.6; color: #c2c7d6; }
+
+/* ---------- Closing CTA ---------- */
+.closing {
+  padding: 88px 72px;
+  text-align: center;
+  border-top: 1px solid rgba(201, 168, 76, 0.28);
+  background: radial-gradient(ellipse 900px 400px at 50% 0%, #1a2550 0%, #0b0d17 70%);
+}
+.closing .h2 { margin: 0 auto 16px; max-width: 760px; }
+.closing p { margin: 0 auto 32px; max-width: 560px; font-size: 17px; line-height: 1.65; color: #c2c7d6; }
+.closing .ctaRow { justify-content: center; }
+
+/* ---------- Footer ---------- */
+.footer {
+  margin-top: auto;
+  border-top: 1px solid #252a45;
+  padding: 28px 72px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 32px;
+  font-size: 12px;
+  color: #8a90a6;
+}
+.footerLinks { display: flex; flex-wrap: wrap; gap: 24px; }
+.page .footer a { color: #8a90a6; }
+.page .footer a:hover { color: #E6C873; }
+
+/* ---------- Smaller screens ---------- */
+@media (max-width: 1000px) {
+  .navText { display: none; }
+  .cards { grid-template-columns: 1fr; gap: 32px; }
+}
+
+@media (max-width: 700px) {
+  .nav { padding: 18px 20px; }
+  .wordmark { font-size: 28px; }
+  .brand svg { width: 32px; height: 32px; }
+  .navLinks { gap: 16px; }
+  .navCta { padding: 9px 14px; }
+  .heroBody { padding: 64px 20px 72px; }
+  .hero { min-height: 0; }
+  .eyebrow { font-size: 11px; letter-spacing: 0.16em; }
+  .lede { font-size: 17px; }
+  .who, .closing { padding-left: 20px; padding-right: 20px; }
+  .footer { padding: 24px 20px; }
+}
