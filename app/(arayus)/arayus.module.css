@@ -192,6 +192,9 @@
 /* ---------- Smaller screens ---------- */
 @media (max-width: 1000px) {
   .navText { display: none; }
+  /* Shrink the star and ray and move the text down so the star sits above the headline, not behind it */
+  .rays { height: 420px; }
+  .heroBody { padding-top: 190px; }
   .cards { grid-template-columns: 1fr; gap: 32px; }
 }
 
@@ -201,7 +204,8 @@
   .brand svg { width: 32px; height: 32px; }
   .navLinks { gap: 16px; }
   .navCta { padding: 9px 14px; }
-  .heroBody { padding: 64px 20px 72px; }
+  .rays { height: 300px; }
+  .heroBody { padding: 150px 20px 72px; }
   .hero { min-height: 0; }
   .eyebrow { font-size: 11px; letter-spacing: 0.16em; }
   .lede { font-size: 17px; }
